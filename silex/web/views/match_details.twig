@@ -1,0 +1,63 @@
+<table id="match_summary">
+    <th>
+        Match ID
+    </th>
+    <th>
+        Duration
+    </th>
+    <th>
+        Result
+    </th>
+    <tr>
+        <td class="match_id">
+            {{ match.match_id }}
+        </td>
+        <td class="duration">
+            {{ match.duration // 60 }}:{% if match.duration % 60 < 10 %}0{% endif %}{{ match.duration % 60 }}
+        </td>
+        <td class="result">
+            {% if match.radiant_win %}
+            Radiant 
+            {% else %}
+            Dire 
+            {% endif %}
+            victory!
+        </td>
+    </tr>
+</table>
+<table id="match_details">
+    <th colspan="2">Heroe</th>
+    <th>Player</th>
+    <th>Level</th>
+    <th colspan="6">Items</th>
+    <th>K</th>
+    <th>D</th>
+    <th>A</th>
+    <th>Gold</th>
+    <th>CS</th>
+    <th>Denies</th>
+    <th>Gold/min</th>
+    <th>Xp/min</th>
+    {% for player in match.players %}
+    <tr>
+        <td class="heroe_img"></td>
+        <td class="heroe">{{ player.hero_id }}</td>
+        <td class="player">{{ player.player_name }}</td>
+        <td class="level">{{ player.level }}</td>
+        <td class="item">{{ player.item_0 }}</td>
+        <td class="item">{{ player.item_1 }}</td>
+        <td class="item">{{ player.item_2 }}</td>
+        <td class="item">{{ player.item_3 }}</td>
+        <td class="item">{{ player.item_4 }}</td>
+        <td class="item">{{ player.item_5 }}</td>
+        <td class="kills">{{ player.kills }}</td>
+        <td class="deaths">{{ player.deaths }}</td>
+        <td class="assists">{{ player.assists }}</td>
+        <td class="gold">{{ player.gold }}</td>
+        <td class="cs">{{ player.last_hits }}</td>
+        <td class="denies">{{ player.denies }}</td>
+        <td class="gold_min">{{ player.gold_per_min }}</td>
+        <td class="xp_min">{{ player.xp_per_min }}</td>
+    </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,51 @@
+{% extends 'template.twig' %}
+
+{% block body %}
+<div id="match_details">
+    <div id="details">
+        
+    </div>
+    <button id="back">Back</button>
+</div>
+<div id="match_list">
+    <table id="matches">
+        <th>
+            Match ID
+        </th>
+        <th>
+            The Radiant
+        </th>
+        <th>
+            The Dire
+        </th>
+        {% for j in range(0,24) %}
+        <tr id="{{ matches[j].match_id }}" class="match{% if j is odd %} shadow{% endif %}{% if j > 4 %} hidden{% endif %}">
+            <td class="match_id">
+                {{ matches[j].match_id }}
+            </td>
+            <td class="players radiant">
+                <ul>
+                {% for player in matches[j].players %}
+                    {% if player.player_slot == 128 %}
+                </ul>
+            </td>
+            <td class="players dire">
+                <ul>
+                    {% endif %}
+                    {% if player.player_name is defined %}
+                    <li>
+                        {{ player.player_name }}
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div id="buttons">
+        <button id="more">v</button>
+        <button id="less" disabled="true">^</button>
+    </div>
+</div>
+{% endblock %}

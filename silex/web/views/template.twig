@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Dota 2 Stats{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="/css/default.css" />
+        <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/js/default.js"></script>
+    </head>
+    <body>
+        <div id="content">
+            <div id="header">
+                {% include 'header.twig' %}
+            </div>
+            <div id="body">
+                {% block body %}{% endblock %}
+            </div>
+            <div id="footer">
+                
+            </div>
+        </div>
+    </body>
+</html>

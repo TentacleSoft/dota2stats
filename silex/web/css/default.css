@@ -1,0 +1,86 @@
+html, body, table {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    background-color: #F4F4F4;
+}
+
+table th {
+    padding: 5px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+table td {
+    padding: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+div#title {
+    padding: 40px 0 40px 0;
+    font-size: 30px;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+div#content {
+    width: 1020px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 0 20px 0 0;
+    box-shadow: 0 0 17px #C0C0C0;
+}
+
+div#body {
+    overflow: hidden;
+}
+
+div#match_details, div#body div#match_list {
+    position: relative;
+}
+
+div#match_details {
+    display: none;
+}
+
+table#matches {
+    width: 100%;
+}
+
+table#matches tr.match {
+    cursor: pointer;
+}
+
+table#matches tr.shadow {
+    background-color: #F9F9F9;
+}
+
+table#matches td.players {
+    width: 430px;
+}
+
+table#matches td.players ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+table#matches td.match_id {
+    width: 160px;
+    text-align: center;
+}
+
+table#match_summary {
+    width: 100%;
+    text-align: center;
+}
+
+table#match_details {
+    width: 100%;
+}
