@@ -17,7 +17,7 @@ $(document).ready(function () {
     
     $('.match').click(function() {
         window.history.pushState(null, '', '/match/'+$(this).attr('id'));
-        $('#match_list').animate({'left': -1000}, 200);
+        $('#match_list').animate({'left': -2000}, 200);
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         $('#details').html('Loading...');
         $('#details').load($(this).attr('id')+'/details');
