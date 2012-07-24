@@ -44,7 +44,7 @@ div#content {
     padding: 20px;
     background-color: white;
     box-shadow: 0 0 100px #ed4b25;
-    border: 1px solid black;
+    border: 2px solid #6e1411;
 }
 
 div#body {
@@ -120,25 +120,13 @@ table.match_details td.hero {
     width: 40px;
 }
 
-table.match_details td.level {
-    width: 60px;
-    text-align: center;
-}
-
-table.match_details td.gold {
-    width: 55px;
-    text-align: center;
-}
-
-table.match_details td.cs {
-    width: 55px;
-    text-align: center;
-}
-
 table.match_details td.items {
-    width: 270px;
+    width: 265px;
 }
 
+table.match_details td.level,
+table.match_details td.gold,
+table.match_details td.cs,
 table.match_details td.gold_min,
 table.match_details td.xp_min {
     width: 55px;
@@ -146,7 +134,7 @@ table.match_details td.xp_min {
 }
 
 table.match_details td.kda {
-    width: 85px;
+    width: 75px;
     text-align: center;
 }
 
