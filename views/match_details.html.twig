@@ -26,7 +26,7 @@
     </tr>
 </table>
 <table id="match_details">
-    <th colspan="2">Hero</th>
+    <th>Hero</th>
     <th>Player</th>
     <th>Level</th>
     <th colspan="6">Items</th>
@@ -38,7 +38,6 @@
     <th>Xp/min</th>
     {% for player in match.players %}
     <tr>
-        <td class="hero_img"></td>
         <td class="hero">{{ player.hero_id }}</td>
         <td class="player">{{ player.player_name }}</td>
         <td class="level">{{ player.level }}</td>
