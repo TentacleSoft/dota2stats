@@ -1,4 +1,4 @@
-html, body, table {
+html, body, table, img {
     margin: 0;
     padding: 0;
 }
@@ -47,6 +47,11 @@ div#match_details, div#body div#match_list {
 
 div#match_details {
     display: none;
+}
+
+img {
+    width: 40px;
+    height: 30px;
 }
 
 table#matches {

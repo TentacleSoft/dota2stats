@@ -26,13 +26,11 @@
     </tr>
 </table>
 <table id="match_details">
-    <th colspan="2">Heroe</th>
+    <th colspan="2">Hero</th>
     <th>Player</th>
     <th>Level</th>
     <th colspan="6">Items</th>
-    <th>K</th>
-    <th>D</th>
-    <th>A</th>
+    <th>KDA</th>
     <th>Gold</th>
     <th>CS</th>
     <th>Denies</th>
@@ -40,19 +38,17 @@
     <th>Xp/min</th>
     {% for player in match.players %}
     <tr>
-        <td class="heroe_img"></td>
-        <td class="heroe">{{ player.hero_id }}</td>
+        <td class="hero_img"></td>
+        <td class="hero">{{ player.hero_id }}</td>
         <td class="player">{{ player.player_name }}</td>
         <td class="level">{{ player.level }}</td>
-        <td class="item">{{ player.item_0 }}</td>
-        <td class="item">{{ player.item_1 }}</td>
-        <td class="item">{{ player.item_2 }}</td>
-        <td class="item">{{ player.item_3 }}</td>
-        <td class="item">{{ player.item_4 }}</td>
-        <td class="item">{{ player.item_5 }}</td>
-        <td class="kills">{{ player.kills }}</td>
-        <td class="deaths">{{ player.deaths }}</td>
-        <td class="assists">{{ player.assists }}</td>
+        <td class="items"><img src="/img/items/{{ items[player.item_0] }}.png" alt="{{ items[player.item_0] }}" /></td>
+        <td class="items"><img src="/img/items/{{ items[player.item_1] }}.png" alt="{{ items[player.item_1] }}" /></td>
+        <td class="items"><img src="/img/items/{{ items[player.item_2] }}.png" alt="{{ items[player.item_2] }}" /></td>
+        <td class="items"><img src="/img/items/{{ items[player.item_3] }}.png" alt="{{ items[player.item_3] }}" /></td>
+        <td class="items"><img src="/img/items/{{ items[player.item_4] }}.png" alt="{{ items[player.item_4] }}" /></td>
+        <td class="items"><img src="/img/items/{{ items[player.item_5] }}.png" alt="{{ items[player.item_5] }}" /></td>
+        <td class="kda">{{ player.kills }}/{{ player.deaths }}/{{ player.assists }}</td>
         <td class="gold">{{ player.gold }}</td>
         <td class="cs">{{ player.last_hits }}</td>
         <td class="denies">{{ player.denies }}</td>

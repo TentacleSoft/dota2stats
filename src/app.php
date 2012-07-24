@@ -51,8 +51,9 @@ $app->get('/match/{match_id}/', function ($match_id) use ($app) {
     $data = json_decode($response)->result;
     
     // $data = json_decode(file_get_contents("../data/match.json"))->result;
+    $items = json_decode(file_get_contents("../data/items.json"), true);
     
-    return $app['twig']->render('match.html.twig', array('match' => $data));
+    return $app['twig']->render('match.html.twig', array('match' => $data, 'items' => $items));
 });
 
 $app->get('/match/{match_id}/details/', function ($match_id) use ($app) {
@@ -67,12 +68,24 @@ $app->get('/match/{match_id}/details/', function ($match_id) use ($app) {
     $data = json_decode($response)->result;*/
     
     $data = json_decode(file_get_contents("../data/match.json"))->result;
+    $items = json_decode(file_get_contents("../data/items.json"), true);
     
-    return $app['twig']->render('match_details.html.twig', array('match' => $data));
+    return $app['twig']->render('match_details.html.twig', array('match' => $data, 'items' => $items));
 });
 
-$app->get('/items/', function() use ($app) {
-    return file_get_contents("../data/items.txt");
+$app->get('/items/', function () use ($app) {
+    $data = explode('"item_', file_get_contents("../data/items.txt"));
+    array_shift($data);
+    
+    $items = array();
+    foreach ($data as $elem) {
+        $item = preg_split('/\"[\s]*/', $elem);
+        if ($item[2] == "ID") {
+            $items[$item[4]] = $item[0];
+        }
+    }
+    
+    return json_encode($items);
 });
 
 $app->run();
