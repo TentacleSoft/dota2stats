@@ -88,4 +88,10 @@ $app->get('/items/', function () use ($app) {
     return json_encode($items);
 });
 
+$app->get('/items/json/', function () use ($app) {
+    $items = json_decode(file_get_contents("../data/items.json"), true);
+    
+    return json_encode($items);
+});
+
 $app->run();
