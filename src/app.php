@@ -92,12 +92,11 @@ $app->get('/match/{match_id}/details/', function ($match_id) use ($app) {
     return $app['twig']->render('match_details.html.twig', $data);
 });
 
-$app->match('/login', function () use ($app) {
+$app->get('/login', function () use ($app) {
     $steam = new SteamSignIn();
 
     //TODO mirar si es pot definir a $app (possiblement es pugui afegir) o d'alguna manera global
     $address = 'http://localhost:8080';
-
 
     $url = $steam->genUrl($address . '/loginCallback', false);
     $data = array('url' => $url);
@@ -105,26 +104,30 @@ $app->match('/login', function () use ($app) {
     return $app['twig']->render('login.html.twig', $data);
 });
 
-$app->get('/loginCallback', function () { // use (Request $request)
+$app->get('/loginCallback', function (Request $request) use ($app) { // use (Request $request)
         $steam = new SteamSignIn();
 
         $correct = $steam->validate();
 
         if ($correct) {
-            echo 'Yay! Everything went alright<br />';
+            $verdict = 'Yay! Everything went alright';
         } else {
-            echo 'Sad panda :(, user is a juanquer (or tries at least)<br />';
+            $verdict = 'Sad panda :(, user is a juanquer (or tries at least)';
         }
 
-        //$id = $request->query->get('openid_identity');
-        $id = $_GET['openid_identity'];
+        $id = $request->query->get('openid_identity');
         $matches = array();
         preg_match('/[0-9]+/', $id, $matches);
 
 
         $id = $matches[0];
         
-        echo 'Steam id : ' . $matches[0];
+        $data = array(
+            'verdict' => $verdict,
+            'steamId' => $id,
+        );
+        
+        return $app['twig']->render('logged.html.twig', $data);
     }
 );
 
