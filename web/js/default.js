@@ -16,11 +16,10 @@ $(document).ready(function () {
     $('#body').css('height', $('#match_list').css('height'));
     
     $('.match').click(function() {
-        window.history.pushState(null, '', '/match/'+$(this).attr('id'));
-        $('#match_list').animate({'left': -2000}, 200);
-        $('html, body').animate({ scrollTop: 0 }, 'fast');
         $('#details').html('Loading...');
+        window.history.pushState(null, '', '/match/'+$(this).attr('id'));
         $('#details').load($(this).attr('id')+'/details');
+        $('#match_list').animate({'left': -1000}, 200);
         $('#match_details').show();
     });
     

@@ -1,4 +1,4 @@
-<table id="match_summary">
+<table class="match_summary">
     <th>
         Match ID
     </th>
@@ -15,7 +15,7 @@
         <td class="duration">
             {{ match.duration // 60 }}:{% if match.duration % 60 < 10 %}0{% endif %}{{ match.duration % 60 }}
         </td>
-        <td class="result">
+        <td class="result {% if match.radiant_win %}radiant{% else %}dire{% endif %}">
             {% if match.radiant_win %}
             Radiant 
             {% else %}
@@ -25,7 +25,8 @@
         </td>
     </tr>
 </table>
-<table id="match_details">
+<table class="match_details">
+	<caption class="radiant">The Radiant</caption>
     <th>Hero</th>
     <th>Player</th>
     <th>Level</th>
@@ -33,12 +34,12 @@
     <th>KDA</th>
     <th>Gold</th>
     <th>CS</th>
-    <th>Denies</th>
     <th>Gold/min</th>
     <th>Xp/min</th>
-    {% for player in match.players %}
+    {% for i in 0..4 %}
+    {% set player = match.players[i] %}
     <tr>
-        <td class="hero">{{ player.hero_id }}</td>
+        <td class="hero"><img src="/img/heroes/{{ heroes[player.hero_id] }}.png" alt="{{ heroes[player.hero_id] }}" /></td>
         <td class="player">{{ player.player_name }}</td>
         <td class="level">{{ player.level }}</td>
         <td class="items">
@@ -51,8 +52,40 @@
         </td>
         <td class="kda">{{ player.kills }}/{{ player.deaths }}/{{ player.assists }}</td>
         <td class="gold">{{ player.gold }}</td>
-        <td class="cs">{{ player.last_hits }}</td>
-        <td class="denies">{{ player.denies }}</td>
+        <td class="cs">{{ player.last_hits }}/{{ player.denies }}</td>
+        <td class="gold_min">{{ player.gold_per_min }}</td>
+        <td class="xp_min">{{ player.xp_per_min }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<table class="match_details">
+	<caption class="dire">The Dire</caption>
+    <th>Hero</th>
+    <th>Player</th>
+    <th>Level</th>
+    <th>Items</th>
+    <th>KDA</th>
+    <th>Gold</th>
+    <th>CS</th>
+    <th>Gold/min</th>
+    <th>Xp/min</th>
+    {% for i in 5..9 %}
+    {% set player = match.players[i] %}
+    <tr>
+        <td class="hero"><img src="/img/heroes/{{ heroes[player.hero_id] }}.png" alt="{{ heroes[player.hero_id] }}" /></td>
+        <td class="player">{{ player.player_name }}</td>
+        <td class="level">{{ player.level }}</td>
+        <td class="items">
+            {% if player.item_0 != 0 %}<img src="/img/items/{{ items[player.item_0] }}.png" alt="{{ items[player.item_0] }}" />{% endif %}
+            {% if player.item_1 != 0 %}<img src="/img/items/{{ items[player.item_1] }}.png" alt="{{ items[player.item_1] }}" />{% endif %}
+            {% if player.item_2 != 0 %}<img src="/img/items/{{ items[player.item_2] }}.png" alt="{{ items[player.item_2] }}" />{% endif %}
+            {% if player.item_3 != 0 %}<img src="/img/items/{{ items[player.item_3] }}.png" alt="{{ items[player.item_3] }}" />{% endif %}
+            {% if player.item_4 != 0 %}<img src="/img/items/{{ items[player.item_4] }}.png" alt="{{ items[player.item_4] }}" />{% endif %}
+            {% if player.item_5 != 0 %}<img src="/img/items/{{ items[player.item_5] }}.png" alt="{{ items[player.item_5] }}" />{% endif %}
+        </td>
+        <td class="kda">{{ player.kills }}/{{ player.deaths }}/{{ player.assists }}</td>
+        <td class="gold">{{ player.gold }}</td>
+        <td class="cs">{{ player.last_hits }}/{{ player.denies }}</td>
         <td class="gold_min">{{ player.gold_per_min }}</td>
         <td class="xp_min">{{ player.xp_per_min }}</td>
     </tr>
