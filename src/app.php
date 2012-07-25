@@ -94,4 +94,8 @@ $app->get('/items/json/', function () use ($app) {
     return json_encode($items);
 });
 
+$app->match('/login', function () {
+    require_once 'login.php';
+});
+
 $app->run();
