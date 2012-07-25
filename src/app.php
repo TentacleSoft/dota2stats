@@ -1,6 +1,11 @@
 <?php
 
 require_once __DIR__.'/../vendor/autoload.php';
+require_once 'loginSteam.php';
+
+
+use Symfony\Component\HttpFoundation\Request;
+
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -87,8 +92,41 @@ $app->get('/match/{match_id}/details/', function ($match_id) use ($app) {
     return $app['twig']->render('match_details.html.twig', $data);
 });
 
-$app->match('/login', function () {
-    require_once 'login.php';
+$app->match('/login', function () use ($app) {
+    $steam = new SteamSignIn();
+
+    //TODO mirar si es pot definir a $app (possiblement es pugui afegir) o d'alguna manera global
+    $address = 'http://localhost:8080';
+
+
+    $url = $steam->genUrl($address . '/loginCallback', false);
+    $data = array('url' => $url);
+
+    return $app['twig']->render('login.html.twig', $data);
 });
+
+$app->get('/loginCallback', function () { // use (Request $request)
+        $steam = new SteamSignIn();
+
+        $correct = $steam->validate();
+
+        if ($correct) {
+            echo 'Yay! Everything went alright<br />';
+        } else {
+            echo 'Sad panda :(, user is a juanquer (or tries at least)<br />';
+        }
+
+        //$id = $request->query->get('openid_identity');
+        $id = $_GET['openid_identity'];
+        $matches = array();
+        preg_match('/[0-9]+/', $id, $matches);
+
+
+        $id = $matches[0];
+        
+        echo 'Steam id : ' . $matches[0];
+    }
+);
+
 
 $app->run();
