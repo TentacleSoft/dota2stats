@@ -1,25 +1,44 @@
 {
-    "minimum-stability": "dev",
+    "name": "symfony/framework-standard-edition",
+    "description": "The \"Symfony Standard Edition\" distribution",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
     "require": {
-        "silex/silex": "1.0.*",
-        "symfony/browser-kit": "2.1.*",
-        "symfony/console": "2.1.*",
-        "symfony/css-selector": "2.1.*",
-        "symfony/dom-crawler": "2.1.*",
-        "symfony/filesystem": "2.1.*",
-        "symfony/finder": "2.1.*",
-        "symfony/form": "2.1.*",
-        "symfony/locale": "2.1.*",
-        "symfony/process": "2.1.*",
-        "symfony/security": "2.1.*",
-        "symfony/serializer": "2.1.*",
-        "symfony/translation": "2.1.*",
-        "symfony/validator": "2.1.*",
-        "symfony/monolog-bridge": "2.1.*",
-        "symfony/twig-bridge": "2.1.*",
-        "monolog/monolog": ">=1.0.0,<1.2-dev",
-        "twig/twig": ">=1.2.0,<2.0-dev",
-        "doctrine/dbal": "2.1.*",
-        "swiftmailer/swiftmailer": "4.1.*"
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.1.*",
+        "doctrine/orm": "2.2.*",
+        "doctrine/doctrine-bundle": "dev-master",
+        "twig/extensions": "dev-master",
+        "symfony/assetic-bundle": "dev-master",
+        "symfony/swiftmailer-bundle": "dev-master",
+        "symfony/monolog-bundle": "dev-master",
+        "sensio/distribution-bundle": "dev-master",
+        "sensio/framework-extra-bundle": "dev-master",
+        "sensio/generator-bundle": "dev-master",
+        "jms/security-extra-bundle": "1.1.*",
+        "jms/di-extra-bundle": "1.0.*"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web"
     }
 }
