@@ -42,7 +42,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/player/{account_id}/",name="player")
-     * @Template("matchList.html.twig")
+     * @Template("Dota2StatsWebBundle:Default:matchList.html.twig")
      */
     public function playerAction($accound_id)
     {
@@ -62,6 +62,7 @@ class DefaultController extends Controller
     /**
      * TODO : set requirements (is this id numerical?)
      * @Route("/match/{match_id}/",name="match") 
+     * @Template()
      */
     public function matchAction($match_id)
     {
@@ -122,6 +123,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/login",name="login") 
+     * @Template()
      */
     public function loginAction()
     {
