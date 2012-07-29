@@ -39,16 +39,16 @@
     {% for i in 0..4 %}
     {% set player = match.players[i] %}
     <tr>
-        <td class="hero"><img src="/img/heroes/{{ heroes[player.hero_id] }}.png" alt="{{ heroes[player.hero_id] }}" /></td>
+        <td class="hero"><img src="/bundles/dota2statsweb/img/heroes/{{ heroes[player.hero_id] }}.png" alt="{{ heroes[player.hero_id] }}" /></td>
         <td class="player">{{ player.player_name }}</td>
         <td class="level">{{ player.level }}</td>
         <td class="items">
-            {% if player.item_0 != 0 %}<img src="/img/items/{{ items[player.item_0] }}.png" alt="{{ items[player.item_0] }}" />{% endif %}
-            {% if player.item_1 != 0 %}<img src="/img/items/{{ items[player.item_1] }}.png" alt="{{ items[player.item_1] }}" />{% endif %}
-            {% if player.item_2 != 0 %}<img src="/img/items/{{ items[player.item_2] }}.png" alt="{{ items[player.item_2] }}" />{% endif %}
-            {% if player.item_3 != 0 %}<img src="/img/items/{{ items[player.item_3] }}.png" alt="{{ items[player.item_3] }}" />{% endif %}
-            {% if player.item_4 != 0 %}<img src="/img/items/{{ items[player.item_4] }}.png" alt="{{ items[player.item_4] }}" />{% endif %}
-            {% if player.item_5 != 0 %}<img src="/img/items/{{ items[player.item_5] }}.png" alt="{{ items[player.item_5] }}" />{% endif %}
+            {% if player.item_0 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_0] }}.png" alt="{{ items[player.item_0] }}" />{% endif %}
+            {% if player.item_1 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_1] }}.png" alt="{{ items[player.item_1] }}" />{% endif %}
+            {% if player.item_2 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_2] }}.png" alt="{{ items[player.item_2] }}" />{% endif %}
+            {% if player.item_3 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_3] }}.png" alt="{{ items[player.item_3] }}" />{% endif %}
+            {% if player.item_4 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_4] }}.png" alt="{{ items[player.item_4] }}" />{% endif %}
+            {% if player.item_5 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_5] }}.png" alt="{{ items[player.item_5] }}" />{% endif %}
         </td>
         <td class="kda">{{ player.kills }}/{{ player.deaths }}/{{ player.assists }}</td>
         <td class="gold">{{ player.gold }}</td>
@@ -72,16 +72,16 @@
     {% for i in 5..9 %}
     {% set player = match.players[i] %}
     <tr>
-        <td class="hero"><img src="/img/heroes/{{ heroes[player.hero_id] }}.png" alt="{{ heroes[player.hero_id] }}" /></td>
+        <td class="hero"><img src="/bundles/dota2statsweb/img/heroes/{{ heroes[player.hero_id] }}.png" alt="{{ heroes[player.hero_id] }}" /></td>
         <td class="player">{{ player.player_name }}</td>
         <td class="level">{{ player.level }}</td>
         <td class="items">
-            {% if player.item_0 != 0 %}<img src="/img/items/{{ items[player.item_0] }}.png" alt="{{ items[player.item_0] }}" />{% endif %}
-            {% if player.item_1 != 0 %}<img src="/img/items/{{ items[player.item_1] }}.png" alt="{{ items[player.item_1] }}" />{% endif %}
-            {% if player.item_2 != 0 %}<img src="/img/items/{{ items[player.item_2] }}.png" alt="{{ items[player.item_2] }}" />{% endif %}
-            {% if player.item_3 != 0 %}<img src="/img/items/{{ items[player.item_3] }}.png" alt="{{ items[player.item_3] }}" />{% endif %}
-            {% if player.item_4 != 0 %}<img src="/img/items/{{ items[player.item_4] }}.png" alt="{{ items[player.item_4] }}" />{% endif %}
-            {% if player.item_5 != 0 %}<img src="/img/items/{{ items[player.item_5] }}.png" alt="{{ items[player.item_5] }}" />{% endif %}
+            {% if player.item_0 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_0] }}.png" alt="{{ items[player.item_0] }}" />{% endif %}
+            {% if player.item_1 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_1] }}.png" alt="{{ items[player.item_1] }}" />{% endif %}
+            {% if player.item_2 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_2] }}.png" alt="{{ items[player.item_2] }}" />{% endif %}
+            {% if player.item_3 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_3] }}.png" alt="{{ items[player.item_3] }}" />{% endif %}
+            {% if player.item_4 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_4] }}.png" alt="{{ items[player.item_4] }}" />{% endif %}
+            {% if player.item_5 != 0 %}<img src="/bundles/dota2statsweb/img/items/{{ items[player.item_5] }}.png" alt="{{ items[player.item_5] }}" />{% endif %}
         </td>
         <td class="kda">{{ player.kills }}/{{ player.deaths }}/{{ player.assists }}</td>
         <td class="gold">{{ player.gold }}</td>
