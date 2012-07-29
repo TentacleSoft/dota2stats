@@ -2,9 +2,13 @@
 <html>
     <head>
         <title>{% block title %}Dota 2 Stats{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="/css/default.css" />
-        <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="/js/default.js"></script>
+        {% block stylesheets %}
+            <link href="{{ asset('/bundles/dota2statsweb/css/default.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        {% block javascripts %}
+	        <script src="{{ asset('/bundles/dota2statsweb/js/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
+	        <script src="{{ asset('/bundles/dota2statsweb/js/default.js') }}" type="text/javascript"></script>
+	    {% endblock %}
     </head>
     <body>
         <div id="content">
