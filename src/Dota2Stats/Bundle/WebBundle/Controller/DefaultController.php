@@ -108,9 +108,9 @@ class DefaultController extends Controller
         /**
         * TODO : repeated code, create functions 
         */
-        $match = json_decode(__DIR__ . file_get_contents('/../Resources/data/match.json'))->result;
-        $items = json_decode(__DIR__ . file_get_contents('/../Resources/data/items.json'), true);
-        $heroes = json_decode(__DIR__ . file_get_contents('/../Resources/data/heroes.json'), true);
+        $match = json_decode(file_get_contents(__DIR__ .'/../Resources/data/match.json'))->result;
+        $items = json_decode(file_get_contents(__DIR__ .'/../Resources/data/items.json'), true);
+        $heroes = json_decode(file_get_contents(__DIR__ .'/../Resources/data/heroes.json'), true);
 
         $data = array(
             'match' => $match,
