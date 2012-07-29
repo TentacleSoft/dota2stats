@@ -2,3 +2,4 @@ app/cache/
 app/logs/
 
 vendor/
+.idea/
