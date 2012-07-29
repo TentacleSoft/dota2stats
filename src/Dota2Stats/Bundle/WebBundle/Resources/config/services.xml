@@ -10,7 +10,7 @@
     </parameters>
 
     <services>
-        <service id="dota2_stats_web.example" class="%dota2_stats_web.example.class%">
+        <service id="Dota2StatsWebBundle:Default:dota2_stats_web.example" class="%dota2_stats_web.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

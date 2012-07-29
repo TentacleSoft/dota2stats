@@ -21,7 +21,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/",name="index")
-     * @Template("Dota2StatsWebBundle:matchList.html.twig")
+     * @Template("Dota2StatsWebBundle:Default:matchList.html.twig")
      */
     public function indexAction()
     {
