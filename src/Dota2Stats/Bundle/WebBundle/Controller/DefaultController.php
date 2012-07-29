@@ -44,7 +44,7 @@ class DefaultController extends Controller
      * @Route("/player/{account_id}/",name="player")
      * @Template("Dota2StatsWebBundle:Default:matchList.html.twig")
      */
-    public function playerAction($accound_id)
+    public function playerAction($account_id)
     {
          $url = 'http://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=48F54125B3F7A12DE2F170FD65624598&account_id=' . $account_id;
 
