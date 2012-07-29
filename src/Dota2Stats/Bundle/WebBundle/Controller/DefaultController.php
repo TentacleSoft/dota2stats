@@ -20,8 +20,8 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/","name"="index")
-     * @Template("matchList.html.twig")
+     * @Route("/",name="index")
+     * @Template("Dota2StatsWebBundle:matchList.html.twig")
      */
     public function indexAction()
     {
@@ -34,14 +34,14 @@ class DefaultController extends Controller
     curl_close ($ch);
     
     $data = json_decode($response)->result->matches;*/
-        //@TODO mirar la manera bona de fer això
-        $data = json_decode(file_get_contents("../Resources/data/match_list.json"))->result->matches;
+        //TODO mirar la manera bona de fer això
+        $data = json_decode(file_get_contents(__DIR__ . "/../Resources/data/match_list.json"))->result->matches;
     
 	return array('matches' => $data);
     }
     
     /**
-     * @Route("/player/{account_id}/","name"="")
+     * @Route("/player/{account_id}/",name="player")
      * @Template("matchList.html.twig")
      */
     public function playerAction($accound_id)
@@ -60,8 +60,8 @@ class DefaultController extends Controller
     }
     
     /**
-     * @TODO : set requirements (is this id numerical?)
-     * @Route("/match/{match_id}/","name"="match") 
+     * TODO : set requirements (is this id numerical?)
+     * @Route("/match/{match_id}/",name="match") 
      */
     public function matchAction($match_id)
     {
@@ -75,9 +75,9 @@ class DefaultController extends Controller
 //     
     // $match = json_decode($response)->result;
     
-    $match = json_decode(file_get_contents("../Resources/data/match.json"))->result;
-    $items = json_decode(file_get_contents("../Resources/data/items.json"), true);
-    $heroes = json_decode(file_get_contents("../Resources/data/heroes.json"), true);
+    $match = json_decode(file_get_contents(__DIR__ . '../Resources/data/match.json'))->result;
+    $items = json_decode(file_get_contents(__DIR__ . "../Resources/data/items.json"), true);
+    $heroes = json_decode(file_get_contents(__DIR__ . "../Resources/data/heroes.json"), true);
     
     $data = array(
         'match' => $match,
@@ -89,7 +89,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/match/{match_id}/details/","name"="match_details")
+     * @Route("/match/{match_id}/details/",name="match_details")
      * @Template()
      */
     public function matchDetailsAction()
@@ -105,11 +105,11 @@ class DefaultController extends Controller
         $match = json_decode($response)->result;*/
 
         /**
-        * @TODO : repeated code, create functions 
+        * TODO : repeated code, create functions 
         */
-        $match = json_decode(file_get_contents("../Resources/data/match.json"))->result;
-        $items = json_decode(file_get_contents("../Resources/data/items.json"), true);
-        $heroes = json_decode(file_get_contents("../Resources/data/heroes.json"), true);
+        $match = json_decode(__DIR__ . file_get_contents("../Resources/data/match.json"))->result;
+        $items = json_decode(__DIR__ . file_get_contents("../Resources/data/items.json"), true);
+        $heroes = json_decode(__DIR__ . file_get_contents("../Resources/data/heroes.json"), true);
 
         $data = array(
             'match' => $match,
@@ -121,17 +121,17 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/login","name"="login") 
+     * @Route("/login",name="login") 
      */
     public function loginAction()
     {
         /**
-         * @TODO include steamlogin and move to service
+         * TODO include steamlogin and move to service
          */
         $steam = new SteamSignIn();
 
         /**
-         * @TODO define in config file (parameters_local maybe?)
+         * TODO define in config file (parameters_local maybe?)
          */
         $address = 'http://localhost:8080';
 
@@ -142,7 +142,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/loginCallback","name"="login_callback") 
+     * @Route("/loginCallback",name="login_callback") 
      * @Template()
      */
     public function loginCallbackAction()
