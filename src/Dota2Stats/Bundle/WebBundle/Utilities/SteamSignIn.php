@@ -1,4 +1,7 @@
 <?php
+
+namespace Dota2Stats\Bundle\WebBundle\Utilities;
+
 /**
 *
 * @package Steam Community API

@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Dota2Stats\Bundle\WebBundle\Utilities\SteamSignIn;
+use Dota2Stats\Bundle\WebBundle\Entity\User;
 
 class DefaultController extends Controller
 {
@@ -21,7 +23,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/",name="index")
-     * @Template("Dota2StatsWebBundle:Default:match_list.html.twig")
+     * @Template("Dota2StatsWebBundle:Default:matchList.html.twig")
      */
     public function indexAction()
     {
@@ -167,16 +169,26 @@ class DefaultController extends Controller
             $verdict = 'Sad panda :(, user is a juanquer (or tries at least)';
         }
 
-        $id = $request->query->get('openid_identity');
+        $steamId = $request->query->get('openid_identity');
         $matches = array();
-        preg_match('/[0-9]+/', $id, $matches);
+        preg_match('/[0-9]+/', $steamId, $matches);
 
 
-        $id = $matches[0];
+        $steamId = $matches[0];
+
+        $user = new User();
+        $user->setSteamId($steamId);
+        $user->setUserName('Joan Bigoti');
+        
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($user);
+        $em->flush();
+
+
         
         $data = array(
             'verdict' => $verdict,
-            'steamId' => $id,
+            'steamId' => $steamId,
         );
         
         return $data;

@@ -1,7 +1,7 @@
 parameters:
     database_driver: pdo_mysql
     database_host: localhost
-    database_port: '8080'
+    database_port: null
     database_name: dota2stats
     database_user: root
     database_password: tarantula
@@ -11,4 +11,3 @@ parameters:
     mailer_password: null
     locale: en
     secret: 50fddf468c6ab2748a3991a446bd378e15e78c6e
-
