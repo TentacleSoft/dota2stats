@@ -34,19 +34,26 @@ class DefaultController extends Controller
     curl_close ($ch);
     
     $data = json_decode($response)->result->matches;*/
-        //TODO mirar la manera bona de fer això
+        /**
+         * cridem a funcio getMatches, que torna les ultimes partides, tenint en compte criteris random
+         * tornara una llista de matches
+         */
         $data = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match_list.json'))->result->matches;
     
-	return array('matches' => $data);
+	    return array('matches' => $data);
     }
-    
+
     /**
-     * @Route("/player/{account_id}/",name="player")
+     * @Route("/player/{accountId}",name="player")
      * @Template("Dota2StatsWebBundle:Default:matchList.html.twig")
      */
-    public function playerAction($account_id)
+    public function playerAction($accountId)
     {
-         $url = 'http://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=48F54125B3F7A12DE2F170FD65624598&account_id=' . $account_id;
+        /**
+         * getPlayerMatches($accountId)
+         */
+
+        $url = 'http://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=48F54125B3F7A12DE2F170FD65624598&account_id=' . $accountId;
 
         $ch=curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -61,10 +68,10 @@ class DefaultController extends Controller
     
     /**
      * TODO : set requirements (is this id numerical?)
-     * @Route("/match/{match_id}/",name="match") 
+     * @Route("/match/{matchId}/",name="match")
      * @Template()
      */
-    public function matchAction($match_id)
+    public function matchAction($matchId)
     {
          // $url = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=' . $match_id . '&key=48F54125B3F7A12DE2F170FD65624598&account_id=18027978';
 //     
@@ -76,17 +83,17 @@ class DefaultController extends Controller
 //     
     // $match = json_decode($response)->result;
     
-    $match = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match.json'))->result;
-    $items = json_decode(file_get_contents(__DIR__ . '/../Resources/data/items.json'), true);
-    $heroes = json_decode(file_get_contents(__DIR__ . '/../Resources/data/heroes.json'), true);
-    
-    $data = array(
-        'match' => $match,
-        'items' => $items,
-        'heroes' => $heroes
-    );
-    
-    return $data;
+        $match = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match.json'))->result;
+        $items = json_decode(file_get_contents(__DIR__ . '/../Resources/data/items.json'), true);
+        $heroes = json_decode(file_get_contents(__DIR__ . '/../Resources/data/heroes.json'), true);
+
+        $data = array(
+            'match' => $match,
+            'items' => $items,
+            'heroes' => $heroes
+        );
+
+        return $data;
     }
     
     /**
