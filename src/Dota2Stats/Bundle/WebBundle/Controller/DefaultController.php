@@ -21,7 +21,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/",name="index")
-     * @Template("Dota2StatsWebBundle:Default:matchList.html.twig")
+     * @Template("Dota2StatsWebBundle:Default:match_list.html.twig")
      */
     public function indexAction()
     {
@@ -42,7 +42,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/player/{account_id}/",name="player")
-     * @Template("Dota2StatsWebBundle:Default:matchList.html.twig")
+     * @Template("Dota2StatsWebBundle:Default:match_list.html.twig")
      */
     public function playerAction($account_id)
     {
