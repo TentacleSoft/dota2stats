@@ -99,7 +99,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/match/{match_id}/details/",name="match_details")
+     * @Route("/match/{match_id}/details/",name="matchDetails")
      * @Template()
      */
     public function matchDetailsAction()
@@ -153,7 +153,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/loginCallback",name="login_callback") 
+     * @Route("/loginCallback",name="loginCallback") 
      * @Template()
      */
     public function loginCallbackAction()
