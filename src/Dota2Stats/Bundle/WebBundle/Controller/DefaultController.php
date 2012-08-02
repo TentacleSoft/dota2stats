@@ -70,12 +70,12 @@ class DefaultController extends Controller
     
     /**
      * TODO : set requirements (is this id numerical?)
-     * @Route("/match/{matchId}/",name="match")
+     * @Route("/match/{matchId}/",name="match", requirements={"matchId" = "\d+"})
      * @Template()
      */
     public function matchAction($matchId)
     {
-         // $url = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=' . $match_id . '&key=48F54125B3F7A12DE2F170FD65624598&account_id=18027978';
+         // $url = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=' . $matchId . '&key=48F54125B3F7A12DE2F170FD65624598&account_id=18027978';
 //     
     // $ch=curl_init();
     // curl_setopt($ch, CURLOPT_URL, $url);
@@ -101,7 +101,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/match/{matchId}/details/",name="matchDetails")
+     * @Route("/match/{matchId}/details/",name="matchDetails", requirements={"matchId" = "\d+"})
      * @Template()
      */
     public function matchDetailsAction($matchId)
