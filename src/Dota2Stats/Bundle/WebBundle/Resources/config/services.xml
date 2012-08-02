@@ -4,17 +4,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+
     <parameters>
-        <parameter key="dota2_stats_web.example.class">Dota2Stats\Bundle\WebBundle\Example</parameter>
+        <parameter key="dota2_stats.service.dota2_data.class">Dota2Stats\Bundle\WebBundle\Service\Dota2DataService</parameter>
+        <parameter key="dota2_stats.service.match_data.class">Dota2Stats\Bundle\WebBundle\Service\MatchDataService</parameter>
     </parameters>
 
     <services>
-        <service id="Dota2StatsWebBundle:Default:dota2_stats_web.example" class="%dota2_stats_web.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="dota2_stats.service.dota2_data" class="%dota2_stats.service.dota2_data.class%" >
+
+        </service>
+        <service id="dota2_stats.service.match_data" class="%dota2_stats.service.match_data.class%" >
+
         </service>
     </services>
-    -->
 </container>

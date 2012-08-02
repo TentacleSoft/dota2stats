@@ -98,10 +98,12 @@ class DefaultController extends Controller
     // curl_close ($ch);
 //     
     // $match = json_decode($response)->result;
-    
-        $match = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match.json'))->result;
-        $items = json_decode(file_get_contents(__DIR__ . '/../Resources/data/items.json'), true);
-        $heroes = json_decode(file_get_contents(__DIR__ . '/../Resources/data/heroes.json'), true);
+        $dataService = $this->get('dota2_stats.service.dota2_data');
+        $matchService = $this->get('dota2_stats.service.match_data');
+
+        $match = $matchService->getMatch($matchId);
+        $items = $dataService->getItems();
+        $heroes = $dataService->getHeroes();
 
         $data = array(
             'match' => $match,
@@ -113,10 +115,10 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/match/{match_id}/details/",name="matchDetails")
+     * @Route("/match/{matchId}/details/",name="matchDetails")
      * @Template()
      */
-    public function matchDetailsAction()
+    public function matchDetailsAction($matchId)
     {
         /*$url = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=' . $match_id . '&key=48F54125B3F7A12DE2F170FD65624598&account_id=18027978';
     
@@ -128,12 +130,12 @@ class DefaultController extends Controller
 
         $match = json_decode($response)->result;*/
 
-        /**
-        * TODO : repeated code, create functions 
-        */
-        $match = json_decode(file_get_contents(__DIR__ .'/../Resources/data/match.json'))->result;
-        $items = json_decode(file_get_contents(__DIR__ .'/../Resources/data/items.json'), true);
-        $heroes = json_decode(file_get_contents(__DIR__ .'/../Resources/data/heroes.json'), true);
+        $dataService = $this->get('dota2_stats.service.dota2_data');
+        $matchService = $this->get('dota2_stats.service.match_data');
+
+        $match = $matchService->getMatch($matchId);
+        $items = $dataService->getItems();
+        $heroes = $dataService->getHeroes();
 
         $data = array(
             'match' => $match,
