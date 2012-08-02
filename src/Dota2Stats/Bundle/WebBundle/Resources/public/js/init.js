@@ -11,6 +11,7 @@ function loadMatches(start) {
 }
 
 $(document).ready(function () {
+    /* Match List */
     var matchesStart = 0;
     
     $('#body').css('height', $('#match_list').css('height'));
@@ -38,5 +39,28 @@ $(document).ready(function () {
     $('button#less').click(function() {
         matchesStart -= 5;
         loadMatches(matchesStart);
+    });
+    
+    /* Login */
+    var loginHeight = $('form.login').height(),
+        loginWidth = $('form.login').width();
+    $('form.login').hide();
+    var loginDivHeight = $('div.login').height(),
+        loginDivWidth = $('div.login').width();
+    $('div.login').css('height', loginDivHeight).css('width', loginDivWidth);
+    
+    $('div.login.closed').click(function () {
+        $('div.login').removeClass('closed');
+        $('span.login-text').hide();
+        $('div.login').animate({width:loginWidth, height:loginHeight}, 'fast', function () {
+            $('form.login').show();
+            /*$('*:not(.login)').one('click', function () {
+                $('div.login').addClass('closed');
+                $('form.login').hide();
+                $('div.login').animate({width:loginDivWidth, height:loginDivHeight}, 'fast', function () {
+                    $('span.login-text').show();
+                });
+            });*/
+        });
     });
 });

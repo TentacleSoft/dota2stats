@@ -183,8 +183,6 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($user);
         $em->flush();
-
-
         
         $data = array(
             'verdict' => $verdict,

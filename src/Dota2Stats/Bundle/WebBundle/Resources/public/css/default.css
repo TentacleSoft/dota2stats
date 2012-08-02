@@ -38,13 +38,31 @@ div.title {
     background: transparent url('../img/dota2-small.png') no-repeat center left;
 }
 
+div.login {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #6E1411;
+    color: #FFF;
+}
+
+div.login.closed {
+    cursor: pointer;
+}
+
+div.login form.login {
+    
+}
+
 div#content {
+    position: relative;
     width: 980px;
     margin: 20px auto;
     padding: 20px;
     background-color: white;
-    box-shadow: 0 0 100px #ed4b25;
-    border: 2px solid #6e1411;
+    box-shadow: 0 0 100px #ED4B25;
+    border: 2px solid #6E1411;
 }
 
 div#body {
