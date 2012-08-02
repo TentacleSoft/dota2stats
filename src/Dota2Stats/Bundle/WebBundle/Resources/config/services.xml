@@ -6,12 +6,16 @@
 
 
     <parameters>
-        <parameter key="dota2_stats.service.dota2_data.class">Dota2Stats\Bundle\WebBundle\Service\Dota2DataService.php</parameter>
-        <parameter key="dota2_stats.service.match_data.class">Dota2Stats\Bundle\WebBundle\Service\MatchDataService.php</parameter>
+        <parameter key="dota2_stats.service.dota2_data.class">Dota2Stats\Bundle\WebBundle\Service\Dota2DataService</parameter>
+        <parameter key="dota2_stats.service.match_data.class">Dota2Stats\Bundle\WebBundle\Service\MatchDataService</parameter>
     </parameters>
 
     <services>
-        <service id="dota2_stats.service.dota2_data" class="%dota2_stats_web.service.dota2_data.class%" />
-        <service id="dota2_stats.service.match_data" class=""%dota2_stats_web.service.match_data.class%" />
+        <service id="dota2_stats.service.dota2_data" class="%dota2_stats.service.dota2_data.class%" >
+
+        </service>
+        <service id="dota2_stats.service.match_data" class="%dota2_stats.service.match_data.class%" >
+
+        </service>
     </services>
 </container>
