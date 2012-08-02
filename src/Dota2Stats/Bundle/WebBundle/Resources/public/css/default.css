@@ -86,7 +86,7 @@ table#matches tr.match {
 }
 
 table#matches tr.shadow {
-    background-color: #F9F9F9;
+    background-color: #F0F0F0;
 }
 
 table#matches td.players {

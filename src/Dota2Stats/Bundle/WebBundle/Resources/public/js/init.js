@@ -20,8 +20,9 @@ $(document).ready(function () {
         $('#details').html('Loading...');
         window.history.pushState(null, '', '/match/'+$(this).attr('id'));
         $('#details').load($(this).attr('id')+'/details');
-        $('#match_list').animate({'left': -1000}, 200);
-        $('#match_details').show();
+        $('#match_list').animate({'left': -1000}, 200, function () {
+            $('#match_details').show();
+        });
     });
     
     $('button#back').click(function() {
