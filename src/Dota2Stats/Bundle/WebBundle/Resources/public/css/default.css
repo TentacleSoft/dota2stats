@@ -28,14 +28,15 @@ table td {
 }
 
 div.title {
-    width: 260px;
+    width: 100%;
     height: 100px;
-    padding: 40px 0 40px 120px;
-    margin: 0 auto;
+    padding: 40px 0;
+    margin-left: 60px;
     font-size: 50px;
+    text-align: center;
     line-height: 100px;
     font-variant: small-caps;
-    background: transparent url('../img/dota2-small.png') no-repeat center left;
+    background: transparent url('../img/dota2-small.png') no-repeat 240px center;
 }
 
 div.login {
@@ -51,8 +52,8 @@ div.login.closed {
     cursor: pointer;
 }
 
-div.login form.login {
-    
+div.login a.login-steam img {
+    height: 51px;
 }
 
 div#content {

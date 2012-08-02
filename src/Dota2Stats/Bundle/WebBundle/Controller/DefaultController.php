@@ -40,9 +40,23 @@ class DefaultController extends Controller
          * cridem a funcio getMatches, que torna les ultimes partides, tenint en compte criteris random
          * tornara una llista de matches
          */
-        $data = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match_list.json'))->result->matches;
+         
+         /**
+         * TODO include steamlogin and move to service
+         */
+        $steam = new SteamSignIn();
+         
+         /**
+         * TODO define in config file (parameters_local maybe?)
+         */
+        $address = 'http://localhost:8080';
+
+        $url = $steam->genUrl($address . '/loginCallback', false);
+        $matches = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match_list.json'))->result->matches;
+        
+        $data = array('matches' => $matches, 'url' => $url);
     
-	    return array('matches' => $data);
+	    return $data;
     }
 
     /**

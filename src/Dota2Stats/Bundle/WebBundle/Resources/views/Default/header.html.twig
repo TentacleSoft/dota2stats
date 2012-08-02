@@ -1,10 +1,13 @@
 <div class="login closed">
     <span class="login-text">Log in</span>
-    <form class="login">
-        <input type="text" name="name" /><br />
-        <input type="password" name="password" /><br />
-        <input type="submit" value="Log in" />
-    </form>
+    <div class="login-popup">
+        <form class="login" method="post">
+            <input type="text" name="name" /><br />
+            <input type="password" name="password" /><br />
+            <input type="submit" value="Log in" />
+        </form>
+        <a class="login-steam" href="{{ url }}" ><img src="/bundles/dota2statsweb/img/steam_login.png" /></a>
+    </div>
 </div>
 <div class="title">
     Dota 2 Stats

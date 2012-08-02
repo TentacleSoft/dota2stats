@@ -1,6 +1,9 @@
-{% extends 'Dota2StatsWebBundle:Default:layout.html.twig' %}
+<script src="{{ asset('/../bundles/dota2statsweb/js/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+$(function () {
+	window.close();
+});
+</script>
 
-{% block body %}
-    Verdict : {{ verdict }}<br />
-    Steam Id : {{ steamId }}
-{% endblock %}
+Verdict : {{ verdict }}<br />
+Steam Id : {{ steamId }}
