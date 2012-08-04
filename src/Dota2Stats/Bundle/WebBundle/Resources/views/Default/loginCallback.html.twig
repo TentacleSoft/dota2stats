@@ -1,9 +1,15 @@
-<script src="{{ asset('/../bundles/dota2statsweb/js/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
+{% extends 'Dota2StatsWebBundle:Default:layout.html.twig' %}
+{#<script src="{{ asset('/../bundles/dota2statsweb/js/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
 $(function () {
 	window.close();
 });
-</script>
+</script>#}
+{% block body %}
 
 Verdict : {{ verdict }}<br />
 Steam Id : {{ steamId }}
+{% if user %}
+    UserName : {{ user.name }}
+    UserSteamId : {{ user.steamId }}
+{% endblock %}
