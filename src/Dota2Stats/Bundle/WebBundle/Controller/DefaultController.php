@@ -6,21 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 use Dota2Stats\Bundle\WebBundle\Utilities\SteamSignIn;
+
 use Dota2Stats\Bundle\WebBundle\Entity\User;
 
 class DefaultController extends Controller
 {
-    /**
-     * Funció d'exemple, la deixo perque té un test ja fet i quan instalem phpunit servirà per provar-lo
-     * @Route("/hello/{name}")
-     * @Template()
-     */
-    public function exampleAction($name)
-    {
-        return array('name' => $name);
-    }
-    
+
     /**
      * @Route("/",name="index")
      * @Template("Dota2StatsWebBundle:Default:matchList.html.twig")
@@ -45,12 +39,8 @@ class DefaultController extends Controller
          * TODO include steamlogin and move to service
          */
         $steam = new SteamSignIn();
-         
-         /**
-         * TODO define in config file (parameters_local maybe?)
-         */
-        $address = 'http://localhost:8080';
 
+        $address = $this->getRequest()->server->get('HTTP_HOST');
         $url = $steam->genUrl($address . '/loginCallback', false);
         $matches = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match_list.json'))->result->matches;
         
@@ -84,12 +74,12 @@ class DefaultController extends Controller
     
     /**
      * TODO : set requirements (is this id numerical?)
-     * @Route("/match/{matchId}/",name="match")
+     * @Route("/match/{matchId}/",name="match", requirements={"matchId" = "\d+"})
      * @Template()
      */
     public function matchAction($matchId)
     {
-         // $url = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=' . $match_id . '&key=48F54125B3F7A12DE2F170FD65624598&account_id=18027978';
+         // $url = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=' . $matchId . '&key=48F54125B3F7A12DE2F170FD65624598&account_id=18027978';
 //     
     // $ch=curl_init();
     // curl_setopt($ch, CURLOPT_URL, $url);
@@ -115,7 +105,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/match/{matchId}/details/",name="matchDetails")
+     * @Route("/match/{matchId}/details/",name="matchDetails", requirements={"matchId" = "\d+"})
      * @Template()
      */
     public function matchDetailsAction($matchId)
@@ -160,7 +150,7 @@ class DefaultController extends Controller
         /**
          * TODO define in config file (parameters_local maybe?)
          */
-        $address = 'http://localhost:8080';
+        $address = $this->getRequest()->server->get('HTTP_HOST');
 
         $url = $steam->genUrl($address . '/loginCallback', false);
         $data = array('url' => $url);
@@ -177,11 +167,11 @@ class DefaultController extends Controller
         $request = $this->getRequest();
         $steam = new SteamSignIn();
 
-        $correct = $steam->validate();
-
-        $verdict = $correct ? 'Yay! Everything went alright' : 
-            'Sad panda :(, user is a juanquer (or tries at least)';
-
+        if (!$steam->validate()) {
+            die('Not working :(');
+            return new Response('Bad Signature', 403);
+        } 
+        
         $steamId = $request->query->get('openid_identity');
         $matches = array();
         preg_match('/[0-9]+/', $steamId, $matches);
@@ -189,17 +179,19 @@ class DefaultController extends Controller
 
         $steamId = $matches[0];
 
-        $user = new User();
-        $user->setSteamId($steamId);
-        $user->setUserName('Joan Bigoti');
+        $user = $this->get('dota2_stats.service.user_info')->getUserInfoBySteamId($steamId);
         
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->persist($user);
-        $em->flush();
+        if ($user === NULL) {
+            //new user, show registration form or something
+            $verdict = 'New User';
+        } else {
+            $verdict = 'Existing User';
+        }
         
         $data = array(
             'verdict' => $verdict,
             'steamId' => $steamId,
+            'user' => $user
         );
         
         return $data;

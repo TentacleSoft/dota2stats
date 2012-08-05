@@ -8,6 +8,7 @@
     <parameters>
         <parameter key="dota2_stats.service.dota2_data.class">Dota2Stats\Bundle\WebBundle\Service\Dota2DataService</parameter>
         <parameter key="dota2_stats.service.match_data.class">Dota2Stats\Bundle\WebBundle\Service\MatchDataService</parameter>
+        <parameter key="dota2_stats.service.user_info.class">Dota2Stats\Bundle\WebBundle\Service\UserInfoService</parameter>
     </parameters>
 
     <services>
@@ -16,6 +17,11 @@
         </service>
         <service id="dota2_stats.service.match_data" class="%dota2_stats.service.match_data.class%" >
 
+        </service>
+        <service id="dota2_stats.service.user_info" class="%dota2_stats.service.user_info.class%">
+            <call method="setEntityManager">
+                <argument>doctrine.orm.entity_manager</argument>
+            </call>
         </service>
     </services>
 </container>
