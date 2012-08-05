@@ -145,15 +145,20 @@ class DefaultController extends Controller
         /**
          * TODO include steamlogin and move to service
          */
-        $steam = new SteamSignIn();
+        //$steam = new SteamSignIn();
 
         /**
          * TODO define in config file (parameters_local maybe?)
          */
-        $address = $this->getRequest()->server->get('HTTP_HOST');
+        /*$address = $this->getRequest()->server->get('HTTP_HOST');
 
         $url = $steam->genUrl($address . '/loginCallback', false);
-        $data = array('url' => $url);
+        
+        $data = array('url' => $url);*/
+        
+        $steamId = isset($_COOKIE['steamId']) ? $_COOKIE['steamId'] : '';
+        
+        $data = array('steamId' => $steamId);
 
         return $data;
     }
@@ -176,8 +181,9 @@ class DefaultController extends Controller
         $matches = array();
         preg_match('/[0-9]+/', $steamId, $matches);
 
-
         $steamId = $matches[0];
+        
+        setcookie('steamId', $steamId);
 
         $user = $this->get('dota2_stats.service.user_info')->getUserInfoBySteamId($steamId);
         

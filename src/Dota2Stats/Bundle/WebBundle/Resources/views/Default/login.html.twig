@@ -1,5 +1,9 @@
-{% extends 'Dota2StatsWebBundle:Default:layout.html.twig' %}
+{# {% extends 'Dota2StatsWebBundle:Default:layout.html.twig' %}
 
 {% block body %}
     <a href="{{ url }}" ><img src="{{ asset('/../bundles/dota2statsweb/img/steam_login.png') }}" /></a>
-{% endblock %}
+{% endblock %} #}
+
+{% if steamId != '' %}
+    Steam Id: {{ steamId }}
+{% endif %}

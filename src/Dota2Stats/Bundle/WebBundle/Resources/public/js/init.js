@@ -38,6 +38,14 @@ $(function () {
     $('a.login-steam').live('click', function () {
         newWindow = window.open($(this).attr('href'),'','height=600,width=1000');
         if (window.focus) newWindow.focus();
+        
+        var timer = setInterval(function() {
+            if (newWindow.closed) {
+                clearInterval(timer);
+                $('.login-text').load('/login').show();
+            }
+        }, 500);
+        
         return false;
     });
     
