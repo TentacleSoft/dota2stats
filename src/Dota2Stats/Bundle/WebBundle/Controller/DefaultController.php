@@ -179,11 +179,8 @@ class DefaultController extends Controller
 
         $correct = $steam->validate();
 
-        if ($correct) {
-            $verdict = 'Yay! Everything went alright';
-        } else {
-            $verdict = 'Sad panda :(, user is a juanquer (or tries at least)';
-        }
+        $verdict = $correct ? 'Yay! Everything went alright' : 
+            'Sad panda :(, user is a juanquer (or tries at least)';
 
         $steamId = $request->query->get('openid_identity');
         $matches = array();
