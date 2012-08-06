@@ -20,7 +20,7 @@
         </service>
         <service id="dota2_stats.service.user_info" class="%dota2_stats.service.user_info.class%">
             <call method="setEntityManager">
-                <argument>doctrine.orm.entity_manager</argument>
+                <argument type="service" id="doctrine.orm.entity_manager"></argument>
             </call>
         </service>
     </services>

@@ -41,7 +41,11 @@ class DefaultController extends Controller
         $steam = new SteamSignIn();
 
         $address = $this->getRequest()->server->get('HTTP_HOST');
-        $url = $steam->genUrl($address . '/loginCallback', false);
+        //Imprescindible que la url comenci per http/https (aixo ho tenia ben fet pero es veu que es va perdre ><
+        /**
+         * TODO : support https
+         */
+        $url = $steam->genUrl('http://' . $address . '/loginCallback', false);
         $matches = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match_list.json'))->result->matches;
         
         $data = array('matches' => $matches, 'url' => $url);
@@ -155,7 +159,10 @@ class DefaultController extends Controller
         $url = $steam->genUrl($address . '/loginCallback', false);
         
         $data = array('url' => $url);*/
-        
+        /**
+         * TODO : validate steam signature, to prevent access to other people's accounts
+         * Also, cookies are not safe if they're not passed encripted with https (as they would expose the user to a man in the middle attack)
+         */
         $steamId = isset($_COOKIE['steamId']) ? $_COOKIE['steamId'] : '';
         
         $data = array('steamId' => $steamId);
