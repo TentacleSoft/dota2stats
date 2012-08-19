@@ -204,7 +204,9 @@ class DefaultController extends Controller
         $data = array(
             'verdict' => $verdict,
             'steamId' => $steamId,
-            'user' => $user
+            'userName' => $user->getUserName(),
+            'steamId' => $user->getSteamId()
+
         );
         
         return $data;

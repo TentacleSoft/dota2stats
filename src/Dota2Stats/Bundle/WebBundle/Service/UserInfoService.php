@@ -18,7 +18,7 @@ class UserInfoService {
         /**
          * TODO : this is not working
          */
-        $users = $this->entityManager->getRepository('user');
+        $users = $this->entityManager->getRepository('Dota2StatsWebBundle:User');
         $user = $users->findOneBySteamId($steamId);
         
         return $user;
