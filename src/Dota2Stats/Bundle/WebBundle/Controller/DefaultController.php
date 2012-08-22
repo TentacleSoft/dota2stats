@@ -180,8 +180,7 @@ class DefaultController extends Controller
         $steam = new SteamSignIn();
 
         if (!$steam->validate()) {
-            die('Not working :(');
-            return new Response('Bad Signature', 403);
+            return new Response('Bad Signature', 404);
         } 
         
         $steamId = $request->query->get('openid_identity');
