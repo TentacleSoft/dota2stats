@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="User",
+ *      uniqueConstraints={@ORM\UniqueConstraint(name="steamId_unique",columns={"steamId"})})
  */
 class User {
     /**
@@ -30,10 +32,10 @@ class User {
      */
     protected $userName = '';
 
-//    /**
-//     * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="user")
-//     */
-//    protected $matchPlayers = array();
+    /**
+     * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="user")
+     */
+    protected $matchPlayers = array();
 
     /**
      * Get id

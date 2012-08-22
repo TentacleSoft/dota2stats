@@ -26,12 +26,11 @@ class MatchPlayer
      * @ORM\JoinColumn(name="matchId", referencedColumnName="id")
      */
     protected $match;
-// For some reason queries are failing unless the foreign key is part of the primary key (maybe try unique?)
-//    /**
-//     * @ORM\ManyToOne(targetEntity="User", inversedBy="matchPlayers")
-//     * @ORM\JoinColumn(name="accountId", referencedColumnName="steamId")
-//     */
-//    protected $user;
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="matchPlayers")
+     * @ORM\JoinColumn(name="accountId", referencedColumnName="steamId")
+     */
+    protected $user;
 
 
     /**
