@@ -14,24 +14,26 @@ class User {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    /**
-     * @ORM\Column(type="string")
-     */
-    protected $steamId = '';
+
     /**
      * @ORM\Column(type="integer")
      */
-    
+    protected $steamId = -1;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     protected $facebookId = '';
+
     /**
      * @ORM\Column(type="string", length=100)
      */
     protected $userName = '';
 
-    /**
-     * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="user")
-     */
-    protected $matchPlayers = array();
+//    /**
+//     * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="user")
+//     */
+//    protected $matchPlayers = array();
 
     /**
      * Get id
