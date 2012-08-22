@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user")
  */
 class User {
     /**
@@ -28,6 +27,11 @@ class User {
      * @ORM\Column(type="string", length=100)
      */
     protected $userName = '';
+
+    /**
+     * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="user")
+     */
+    protected $matchPlayers = array();
 
     /**
      * Get id
