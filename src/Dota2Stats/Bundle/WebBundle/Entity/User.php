@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="User",
- *      uniqueConstraints={@ORM\UniqueConstraint(name="steamId_unique",columns={"steamId"})})
+ *      uniqueConstraints={@ORM\UniqueConstraint(name="steamId_unique",columns={"steamId"}),@ORM\UniqueConstraint(name="userName_unique",columns={"userName"})})
  */
 class User {
     /**
@@ -111,5 +111,41 @@ class User {
     public function getUserName()
     {
         return $this->userName;
+    }
+    public function __construct()
+    {
+        $this->matchPlayers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add matchPlayers
+     *
+     * @param Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer $matchPlayers
+     * @return User
+     */
+    public function addMatchPlayer(\Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer $matchPlayers)
+    {
+        $this->matchPlayers[] = $matchPlayers;
+        return $this;
+    }
+
+    /**
+     * Remove matchPlayers
+     *
+     * @param Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer $matchPlayers
+     */
+    public function removeMatchPlayer(\Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer $matchPlayers)
+    {
+        $this->matchPlayers->removeElement($matchPlayers);
+    }
+
+    /**
+     * Get matchPlayers
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getMatchPlayers()
+    {
+        return $this->matchPlayers;
     }
 }
