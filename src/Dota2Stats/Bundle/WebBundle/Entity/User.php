@@ -112,6 +112,7 @@ class User {
     {
         return $this->userName;
     }
+
     public function __construct()
     {
         $this->matchPlayers = new \Doctrine\Common\Collections\ArrayCollection();
