@@ -1,6 +1,6 @@
 function loadMatches(start) {
     var matches = $('.match').addClass('hidden');
-    for (i = start; i < start+5; i++) {
+    for (var i = start; i < start+5; i++) {
         $(matches[i]).removeClass('hidden');
     }
     
@@ -15,6 +15,7 @@ function restoreLogin(divWidth, divHeight) {
     $('div.login-popup').hide();
     $('div.login').animate({width:divWidth, height:divHeight}, 'fast', function () {
         $('span.login-text').show();
+        $('div#background').hide();
     });
 }
 
@@ -27,16 +28,21 @@ $(function () {
         loginDivHeight = $('div.login').height();
     $('div.login').css('height', loginDivHeight).css('width', loginDivWidth);
     
-    $('div.login.closed').click(function () {
+    $('div.login.closed').click(function() {
         $('div.login').removeClass('closed');
         $('span.login-text').hide();
-        $('div.login').animate({width:loginWidth, height:loginHeight}, 'fast', function () {
+        $('div.login').animate({width:loginWidth, height:loginHeight}, 'fast', function() {
             $('div.login-popup').show();
+            $('div#background').show(function() {
+                $('div#background').click({divWidth: loginDivWidth, divHeight: loginDivHeight}, function() {
+                    restoreLogin(loginDivWidth, loginDivHeight);
+                });
+            });
         });
     });
     
-    $('a.login-steam').live('click', function () {
-        newWindow = window.open($(this).attr('href'),'','height=600,width=1000');
+    $('a.login-steam').live('click', function() {
+        var newWindow = window.open($(this).attr('href'),'','height=600,width=1000');
         if (window.focus) newWindow.focus();
         
         var timer = setInterval(function() {
@@ -58,19 +64,17 @@ $(function () {
     
     $('#body').css('height', $('#match_list').css('height'));
     
-    $('.match').click({divWidth: loginDivWidth, divHeight: loginDivHeight}, function() {
+    $('.match').click(function() {
         $('#details').html('Loading...');
         window.history.pushState(null, '', '/match/'+$(this).attr('id'));
-        restoreLogin(loginDivWidth, loginDivHeight);
         $('#details').load($(this).attr('id')+'/details');
-        $('#match_list').animate({'left': -1000}, 200, function () {
+        $('#match_list').animate({'left': -1000}, 200, function() {
             $('#match_details').show();
         });
     });
     
-    $('button#back').click({divWidth: loginDivWidth, divHeight: loginDivHeight}, function() {
+    $('button#back').click(function() {
         window.history.pushState(null, '', '/');
-        restoreLogin(loginDivWidth, loginDivHeight);
         $('#match_details').hide();
         $('#match_list').show();
         $('#match_list').animate({'left': 0}, 200);
