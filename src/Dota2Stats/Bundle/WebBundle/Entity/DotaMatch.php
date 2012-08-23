@@ -15,7 +15,7 @@ class DotaMatch {
     protected $id; // 27087736,
 
     /**
-     * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="match")
+     * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="match", fetch="EAGER")
      *
      */
     protected $matchPlayers;
