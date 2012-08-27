@@ -10,7 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  *      uniqueConstraints={@ORM\UniqueConstraint(name="userId_unique",columns={"userId"})})
  */
 class SteamUser {
-    
+    /**
+     * @TODO include user stats 
+     */
 
     /**
      * @ORM\Id
