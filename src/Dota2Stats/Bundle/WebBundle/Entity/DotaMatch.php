@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  */
-class DotaMatch {
+class DotaMatch
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -95,23 +96,24 @@ class DotaMatch {
     {
         $this->matchPlayers = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Set id
      *
-     * @param integer $id
+     * @param  integer   $id
      * @return DotaMatch
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -121,19 +123,20 @@ class DotaMatch {
     /**
      * Set season
      *
-     * @param integer $season
+     * @param  integer   $season
      * @return DotaMatch
      */
     public function setSeason($season)
     {
         $this->season = $season;
+
         return $this;
     }
 
     /**
      * Get season
      *
-     * @return integer 
+     * @return integer
      */
     public function getSeason()
     {
@@ -143,19 +146,20 @@ class DotaMatch {
     /**
      * Set radiantWin
      *
-     * @param boolean $radiantWin
+     * @param  boolean   $radiantWin
      * @return DotaMatch
      */
     public function setRadiantWin($radiantWin)
     {
         $this->radiantWin = $radiantWin;
+
         return $this;
     }
 
     /**
      * Get radiantWin
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getRadiantWin()
     {
@@ -165,19 +169,20 @@ class DotaMatch {
     /**
      * Set duration
      *
-     * @param integer $duration
+     * @param  integer   $duration
      * @return DotaMatch
      */
     public function setDuration($duration)
     {
         $this->duration = $duration;
+
         return $this;
     }
 
     /**
      * Get duration
      *
-     * @return integer 
+     * @return integer
      */
     public function getDuration()
     {
@@ -187,19 +192,20 @@ class DotaMatch {
     /**
      * Set startTime
      *
-     * @param datetime $startTime
+     * @param  datetime  $startTime
      * @return DotaMatch
      */
     public function setStartTime($startTime)
     {
         $this->startTime = $startTime;
+
         return $this;
     }
 
     /**
      * Get startTime
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getStartTime()
     {
@@ -209,19 +215,20 @@ class DotaMatch {
     /**
      * Set towerStatusRadiant
      *
-     * @param integer $towerStatusRadiant
+     * @param  integer   $towerStatusRadiant
      * @return DotaMatch
      */
     public function setTowerStatusRadiant($towerStatusRadiant)
     {
         $this->towerStatusRadiant = $towerStatusRadiant;
+
         return $this;
     }
 
     /**
      * Get towerStatusRadiant
      *
-     * @return integer 
+     * @return integer
      */
     public function getTowerStatusRadiant()
     {
@@ -231,19 +238,20 @@ class DotaMatch {
     /**
      * Set towerStatusDire
      *
-     * @param integer $towerStatusDire
+     * @param  integer   $towerStatusDire
      * @return DotaMatch
      */
     public function setTowerStatusDire($towerStatusDire)
     {
         $this->towerStatusDire = $towerStatusDire;
+
         return $this;
     }
 
     /**
      * Get towerStatusDire
      *
-     * @return integer 
+     * @return integer
      */
     public function getTowerStatusDire()
     {
@@ -253,19 +261,20 @@ class DotaMatch {
     /**
      * Set barracksStatusRadiant
      *
-     * @param integer $barracksStatusRadiant
+     * @param  integer   $barracksStatusRadiant
      * @return DotaMatch
      */
     public function setBarracksStatusRadiant($barracksStatusRadiant)
     {
         $this->barracksStatusRadiant = $barracksStatusRadiant;
+
         return $this;
     }
 
     /**
      * Get barracksStatusRadiant
      *
-     * @return integer 
+     * @return integer
      */
     public function getBarracksStatusRadiant()
     {
@@ -275,19 +284,20 @@ class DotaMatch {
     /**
      * Set barracksStatusDire
      *
-     * @param integer $barracksStatusDire
+     * @param  integer   $barracksStatusDire
      * @return DotaMatch
      */
     public function setBarracksStatusDire($barracksStatusDire)
     {
         $this->barracksStatusDire = $barracksStatusDire;
+
         return $this;
     }
 
     /**
      * Get barracksStatusDire
      *
-     * @return integer 
+     * @return integer
      */
     public function getBarracksStatusDire()
     {
@@ -297,19 +307,20 @@ class DotaMatch {
     /**
      * Set cluster
      *
-     * @param integer $cluster
+     * @param  integer   $cluster
      * @return DotaMatch
      */
     public function setCluster($cluster)
     {
         $this->cluster = $cluster;
+
         return $this;
     }
 
     /**
      * Get cluster
      *
-     * @return integer 
+     * @return integer
      */
     public function getCluster()
     {
@@ -319,19 +330,20 @@ class DotaMatch {
     /**
      * Set firstBloodTime
      *
-     * @param integer $firstBloodTime
+     * @param  integer   $firstBloodTime
      * @return DotaMatch
      */
     public function setFirstBloodTime($firstBloodTime)
     {
         $this->firstBloodTime = $firstBloodTime;
+
         return $this;
     }
 
     /**
      * Get firstBloodTime
      *
-     * @return integer 
+     * @return integer
      */
     public function getFirstBloodTime()
     {
@@ -341,19 +353,20 @@ class DotaMatch {
     /**
      * Set replaySalt
      *
-     * @param integer $replaySalt
+     * @param  integer   $replaySalt
      * @return DotaMatch
      */
     public function setReplaySalt($replaySalt)
     {
         $this->replaySalt = $replaySalt;
+
         return $this;
     }
 
     /**
      * Get replaySalt
      *
-     * @return integer 
+     * @return integer
      */
     public function getReplaySalt()
     {
@@ -363,19 +376,20 @@ class DotaMatch {
     /**
      * Set lobbyType
      *
-     * @param integer $lobbyType
+     * @param  integer   $lobbyType
      * @return DotaMatch
      */
     public function setLobbyType($lobbyType)
     {
         $this->lobbyType = $lobbyType;
+
         return $this;
     }
 
     /**
      * Get lobbyType
      *
-     * @return integer 
+     * @return integer
      */
     public function getLobbyType()
     {
@@ -385,19 +399,20 @@ class DotaMatch {
     /**
      * Set humanPlayers
      *
-     * @param integer $humanPlayers
+     * @param  integer   $humanPlayers
      * @return DotaMatch
      */
     public function setHumanPlayers($humanPlayers)
     {
         $this->humanPlayers = $humanPlayers;
+
         return $this;
     }
 
     /**
      * Get humanPlayers
      *
-     * @return integer 
+     * @return integer
      */
     public function getHumanPlayers()
     {
@@ -407,19 +422,20 @@ class DotaMatch {
     /**
      * Set leagueId
      *
-     * @param integer $leagueId
+     * @param  integer   $leagueId
      * @return DotaMatch
      */
     public function setLeagueId($leagueId)
     {
         $this->leagueId = $leagueId;
+
         return $this;
     }
 
     /**
      * Get leagueId
      *
-     * @return integer 
+     * @return integer
      */
     public function getLeagueId()
     {
@@ -429,12 +445,13 @@ class DotaMatch {
     /**
      * Add matchPlayers
      *
-     * @param Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer $matchPlayers
+     * @param  Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer $matchPlayers
      * @return DotaMatch
      */
     public function addMatchPlayer(\Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer $matchPlayers)
     {
         $this->matchPlayers[] = $matchPlayers;
+
         return $this;
     }
 
@@ -451,7 +468,7 @@ class DotaMatch {
     /**
      * Get matchPlayers
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getMatchPlayers()
     {

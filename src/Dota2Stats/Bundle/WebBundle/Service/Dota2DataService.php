@@ -2,8 +2,8 @@
 
 namespace Dota2Stats\Bundle\WebBundle\Service;
 
-
-class Dota2DataService {
+class Dota2DataService
+{
     /**
      * @return mixed
      */

@@ -28,13 +28,13 @@ class DefaultController extends Controller
     curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
     $response = curl_exec ($ch);
     curl_close ($ch);
-    
+
     $data = json_decode($response)->result->matches;*/
         /**
          * cridem a funcio getMatches, que torna les ultimes partides, tenint en compte criteris random
          * tornara una llista de matches
          */
-         
+
          /**
          * @TODO include steamlogin and move to service
          */
@@ -47,10 +47,10 @@ class DefaultController extends Controller
          */
         $url = $steam->genUrl('http://' . $address . '/loginCallback', false);
         $matches = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match_list.json'))->result->matches;
-        
+
         $data = array('matches' => $matches, 'url' => $url);
-    
-	    return $data;
+
+        return $data;
     }
 
     /**
@@ -72,10 +72,10 @@ class DefaultController extends Controller
         curl_close($ch);
 
         $data = json_decode($response)->result->matches;
-        
+
         return array('matches' => $data);
     }
-    
+
     /**
      * @Route("/match/{matchId}/",name="match", requirements={"matchId" = "\d+"})
      * @Template()
@@ -83,13 +83,13 @@ class DefaultController extends Controller
     public function matchAction($matchId)
     {
          // $url = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=' . $matchId . '&key=48F54125B3F7A12DE2F170FD65624598&account_id=18027978';
-//     
+//
     // $ch=curl_init();
     // curl_setopt($ch, CURLOPT_URL, $url);
     // curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
     // $response = curl_exec ($ch);
     // curl_close ($ch);
-//     
+//
     // $match = json_decode($response)->result;
         $dataService = $this->get('dota2_stats.service.dota2_data');
         $matchService = $this->get('dota2_stats.service.match_data');
@@ -106,7 +106,7 @@ class DefaultController extends Controller
 
         return $data;
     }
-    
+
     /**
      * @Route("/match/{matchId}/details/",name="matchDetails", requirements={"matchId" = "\d+"})
      * @Template()
@@ -114,7 +114,7 @@ class DefaultController extends Controller
     public function matchDetailsAction($matchId)
     {
         /*$url = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=' . $match_id . '&key=48F54125B3F7A12DE2F170FD65624598&account_id=18027978';
-    
+
         $ch=curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -138,9 +138,9 @@ class DefaultController extends Controller
 
         return $data;
     }
-    
+
     /**
-     * @Route("/login",name="login") 
+     * @Route("/login",name="login")
      * @Template()
      */
     public function loginAction()
@@ -156,21 +156,21 @@ class DefaultController extends Controller
         /*$address = $this->getRequest()->server->get('HTTP_HOST');
 
         $url = $steam->genUrl($address . '/loginCallback', false);
-        
+
         $data = array('url' => $url);*/
         /**
          * @TODO : validate steam signature, to prevent access to other people's accounts
          * Also, cookies are not safe if they're not passed encripted with https (as they would expose the user to a man in the middle attack)
          */
         $steamId = isset($_COOKIE['steamId']) ? $_COOKIE['steamId'] : '';
-        
+
         $data = array('steamId' => $steamId);
 
         return $data;
     }
-    
+
     /**
-     * @Route("/loginCallback",name="loginCallback") 
+     * @Route("/loginCallback",name="loginCallback")
      * @Template()
      */
     public function loginCallbackAction()
@@ -180,25 +180,25 @@ class DefaultController extends Controller
 
         if (!$steam->validate()) {
             return new Response('Bad Signature', 404);
-        } 
-        
+        }
+
         $steamId = $request->query->get('openid_identity');
         $matches = array();
         preg_match('/[0-9]+/', $steamId, $matches);
 
         $steamId = $matches[0];
-        
+
         setcookie('steamId', $steamId);
 
         $user = $this->get('dota2_stats.service.user_info')->getUserInfoBySteamId($steamId);
-        
+
         if ($user === NULL) {
             //new user, show registration form or something
             $verdict = 'New User';
         } else {
             $verdict = 'Existing User';
         }
-        
+
         $data = array(
             'verdict' => $verdict,
             'steamId' => $steamId,
@@ -206,7 +206,7 @@ class DefaultController extends Controller
             'steamId' => $user->getSteamId()
 
         );
-        
+
         return $data;
     }
 }

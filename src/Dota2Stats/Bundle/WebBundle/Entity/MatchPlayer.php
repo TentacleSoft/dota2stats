@@ -32,7 +32,6 @@ class MatchPlayer
      */
     protected $steamUser;
 
-
     /**
      * @ORM\Column(type="integer")
      */
@@ -151,19 +150,20 @@ class MatchPlayer
     /**
      * Set accountId
      *
-     * @param integer $accountId
+     * @param  integer     $accountId
      * @return MatchPlayer
      */
     public function setAccountId($accountId)
     {
         $this->accountId = $accountId;
+
         return $this;
     }
 
     /**
      * Get accountId
      *
-     * @return integer 
+     * @return integer
      */
     public function getAccountId()
     {
@@ -173,19 +173,20 @@ class MatchPlayer
     /**
      * Set matchId
      *
-     * @param integer $matchId
+     * @param  integer     $matchId
      * @return MatchPlayer
      */
     public function setMatchId($matchId)
     {
         $this->matchId = $matchId;
+
         return $this;
     }
 
     /**
      * Get matchId
      *
-     * @return integer 
+     * @return integer
      */
     public function getMatchId()
     {
@@ -195,19 +196,20 @@ class MatchPlayer
     /**
      * Set playerSlot
      *
-     * @param integer $playerSlot
+     * @param  integer     $playerSlot
      * @return MatchPlayer
      */
     public function setPlayerSlot($playerSlot)
     {
         $this->playerSlot = $playerSlot;
+
         return $this;
     }
 
     /**
      * Get playerSlot
      *
-     * @return integer 
+     * @return integer
      */
     public function getPlayerSlot()
     {
@@ -217,19 +219,20 @@ class MatchPlayer
     /**
      * Set heroId
      *
-     * @param integer $heroId
+     * @param  integer     $heroId
      * @return MatchPlayer
      */
     public function setHeroId($heroId)
     {
         $this->heroId = $heroId;
+
         return $this;
     }
 
     /**
      * Get heroId
      *
-     * @return integer 
+     * @return integer
      */
     public function getHeroId()
     {
@@ -239,19 +242,20 @@ class MatchPlayer
     /**
      * Set item0
      *
-     * @param integer $item0
+     * @param  integer     $item0
      * @return MatchPlayer
      */
     public function setItem0($item0)
     {
         $this->item0 = $item0;
+
         return $this;
     }
 
     /**
      * Get item0
      *
-     * @return integer 
+     * @return integer
      */
     public function getItem0()
     {
@@ -261,19 +265,20 @@ class MatchPlayer
     /**
      * Set item1
      *
-     * @param integer $item1
+     * @param  integer     $item1
      * @return MatchPlayer
      */
     public function setItem1($item1)
     {
         $this->item1 = $item1;
+
         return $this;
     }
 
     /**
      * Get item1
      *
-     * @return integer 
+     * @return integer
      */
     public function getItem1()
     {
@@ -283,19 +288,20 @@ class MatchPlayer
     /**
      * Set item2
      *
-     * @param integer $item2
+     * @param  integer     $item2
      * @return MatchPlayer
      */
     public function setItem2($item2)
     {
         $this->item2 = $item2;
+
         return $this;
     }
 
     /**
      * Get item2
      *
-     * @return integer 
+     * @return integer
      */
     public function getItem2()
     {
@@ -305,19 +311,20 @@ class MatchPlayer
     /**
      * Set item3
      *
-     * @param integer $item3
+     * @param  integer     $item3
      * @return MatchPlayer
      */
     public function setItem3($item3)
     {
         $this->item3 = $item3;
+
         return $this;
     }
 
     /**
      * Get item3
      *
-     * @return integer 
+     * @return integer
      */
     public function getItem3()
     {
@@ -327,19 +334,20 @@ class MatchPlayer
     /**
      * Set item4
      *
-     * @param integer $item4
+     * @param  integer     $item4
      * @return MatchPlayer
      */
     public function setItem4($item4)
     {
         $this->item4 = $item4;
+
         return $this;
     }
 
     /**
      * Get item4
      *
-     * @return integer 
+     * @return integer
      */
     public function getItem4()
     {
@@ -349,19 +357,20 @@ class MatchPlayer
     /**
      * Set item5
      *
-     * @param integer $item5
+     * @param  integer     $item5
      * @return MatchPlayer
      */
     public function setItem5($item5)
     {
         $this->item5 = $item5;
+
         return $this;
     }
 
     /**
      * Get item5
      *
-     * @return integer 
+     * @return integer
      */
     public function getItem5()
     {
@@ -371,19 +380,20 @@ class MatchPlayer
     /**
      * Set kills
      *
-     * @param integer $kills
+     * @param  integer     $kills
      * @return MatchPlayer
      */
     public function setKills($kills)
     {
         $this->kills = $kills;
+
         return $this;
     }
 
     /**
      * Get kills
      *
-     * @return integer 
+     * @return integer
      */
     public function getKills()
     {
@@ -393,19 +403,20 @@ class MatchPlayer
     /**
      * Set deaths
      *
-     * @param integer $deaths
+     * @param  integer     $deaths
      * @return MatchPlayer
      */
     public function setDeaths($deaths)
     {
         $this->deaths = $deaths;
+
         return $this;
     }
 
     /**
      * Get deaths
      *
-     * @return integer 
+     * @return integer
      */
     public function getDeaths()
     {
@@ -415,19 +426,20 @@ class MatchPlayer
     /**
      * Set assists
      *
-     * @param integer $assists
+     * @param  integer     $assists
      * @return MatchPlayer
      */
     public function setAssists($assists)
     {
         $this->assists = $assists;
+
         return $this;
     }
 
     /**
      * Get assists
      *
-     * @return integer 
+     * @return integer
      */
     public function getAssists()
     {
@@ -437,19 +449,20 @@ class MatchPlayer
     /**
      * Set leaverStatus
      *
-     * @param integer $leaverStatus
+     * @param  integer     $leaverStatus
      * @return MatchPlayer
      */
     public function setLeaverStatus($leaverStatus)
     {
         $this->leaverStatus = $leaverStatus;
+
         return $this;
     }
 
     /**
      * Get leaverStatus
      *
-     * @return integer 
+     * @return integer
      */
     public function getLeaverStatus()
     {
@@ -459,19 +472,20 @@ class MatchPlayer
     /**
      * Set gold
      *
-     * @param integer $gold
+     * @param  integer     $gold
      * @return MatchPlayer
      */
     public function setGold($gold)
     {
         $this->gold = $gold;
+
         return $this;
     }
 
     /**
      * Get gold
      *
-     * @return integer 
+     * @return integer
      */
     public function getGold()
     {
@@ -481,19 +495,20 @@ class MatchPlayer
     /**
      * Set lastHits
      *
-     * @param integer $lastHits
+     * @param  integer     $lastHits
      * @return MatchPlayer
      */
     public function setLastHits($lastHits)
     {
         $this->lastHits = $lastHits;
+
         return $this;
     }
 
     /**
      * Get lastHits
      *
-     * @return integer 
+     * @return integer
      */
     public function getLastHits()
     {
@@ -503,19 +518,20 @@ class MatchPlayer
     /**
      * Set denies
      *
-     * @param integer $denies
+     * @param  integer     $denies
      * @return MatchPlayer
      */
     public function setDenies($denies)
     {
         $this->denies = $denies;
+
         return $this;
     }
 
     /**
      * Get denies
      *
-     * @return integer 
+     * @return integer
      */
     public function getDenies()
     {
@@ -525,19 +541,20 @@ class MatchPlayer
     /**
      * Set goldPerMin
      *
-     * @param integer $goldPerMin
+     * @param  integer     $goldPerMin
      * @return MatchPlayer
      */
     public function setGoldPerMin($goldPerMin)
     {
         $this->goldPerMin = $goldPerMin;
+
         return $this;
     }
 
     /**
      * Get goldPerMin
      *
-     * @return integer 
+     * @return integer
      */
     public function getGoldPerMin()
     {
@@ -547,19 +564,20 @@ class MatchPlayer
     /**
      * Set xpPerMin
      *
-     * @param integer $xpPerMin
+     * @param  integer     $xpPerMin
      * @return MatchPlayer
      */
     public function setXpPerMin($xpPerMin)
     {
         $this->xpPerMin = $xpPerMin;
+
         return $this;
     }
 
     /**
      * Get xpPerMin
      *
-     * @return integer 
+     * @return integer
      */
     public function getXpPerMin()
     {
@@ -569,19 +587,20 @@ class MatchPlayer
     /**
      * Set goldSpent
      *
-     * @param integer $goldSpent
+     * @param  integer     $goldSpent
      * @return MatchPlayer
      */
     public function setGoldSpent($goldSpent)
     {
         $this->goldSpent = $goldSpent;
+
         return $this;
     }
 
     /**
      * Get goldSpent
      *
-     * @return integer 
+     * @return integer
      */
     public function getGoldSpent()
     {
@@ -591,19 +610,20 @@ class MatchPlayer
     /**
      * Set heroDamage
      *
-     * @param integer $heroDamage
+     * @param  integer     $heroDamage
      * @return MatchPlayer
      */
     public function setHeroDamage($heroDamage)
     {
         $this->heroDamage = $heroDamage;
+
         return $this;
     }
 
     /**
      * Get heroDamage
      *
-     * @return integer 
+     * @return integer
      */
     public function getHeroDamage()
     {
@@ -613,19 +633,20 @@ class MatchPlayer
     /**
      * Set towerDamage
      *
-     * @param integer $towerDamage
+     * @param  integer     $towerDamage
      * @return MatchPlayer
      */
     public function setTowerDamage($towerDamage)
     {
         $this->towerDamage = $towerDamage;
+
         return $this;
     }
 
     /**
      * Get towerDamage
      *
-     * @return integer 
+     * @return integer
      */
     public function getTowerDamage()
     {
@@ -635,19 +656,20 @@ class MatchPlayer
     /**
      * Set heroHealing
      *
-     * @param integer $heroHealing
+     * @param  integer     $heroHealing
      * @return MatchPlayer
      */
     public function setHeroHealing($heroHealing)
     {
         $this->heroHealing = $heroHealing;
+
         return $this;
     }
 
     /**
      * Get heroHealing
      *
-     * @return integer 
+     * @return integer
      */
     public function getHeroHealing()
     {
@@ -657,19 +679,20 @@ class MatchPlayer
     /**
      * Set level
      *
-     * @param integer $level
+     * @param  integer     $level
      * @return MatchPlayer
      */
     public function setLevel($level)
     {
         $this->level = $level;
+
         return $this;
     }
 
     /**
      * Get level
      *
-     * @return integer 
+     * @return integer
      */
     public function getLevel()
     {
@@ -679,19 +702,20 @@ class MatchPlayer
     /**
      * Set playerName
      *
-     * @param string $playerName
+     * @param  string      $playerName
      * @return MatchPlayer
      */
     public function setPlayerName($playerName)
     {
         $this->playerName = $playerName;
+
         return $this;
     }
 
     /**
      * Get playerName
      *
-     * @return string 
+     * @return string
      */
     public function getPlayerName()
     {
@@ -701,19 +725,20 @@ class MatchPlayer
     /**
      * Set match
      *
-     * @param Dota2Stats\Bundle\WebBundle\Entity\DotaMatch $match
+     * @param  Dota2Stats\Bundle\WebBundle\Entity\DotaMatch $match
      * @return MatchPlayer
      */
     public function setMatch(\Dota2Stats\Bundle\WebBundle\Entity\DotaMatch $match = null)
     {
         $this->match = $match;
+
         return $this;
     }
 
     /**
      * Get match
      *
-     * @return Dota2Stats\Bundle\WebBundle\Entity\DotaMatch 
+     * @return Dota2Stats\Bundle\WebBundle\Entity\DotaMatch
      */
     public function getMatch()
     {
@@ -723,19 +748,20 @@ class MatchPlayer
     /**
      * Set user
      *
-     * @param Dota2Stats\Bundle\WebBundle\Entity\User $user
+     * @param  Dota2Stats\Bundle\WebBundle\Entity\User $user
      * @return MatchPlayer
      */
     public function setUser(\Dota2Stats\Bundle\WebBundle\Entity\User $user = null)
     {
         $this->user = $user;
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return Dota2Stats\Bundle\WebBundle\Entity\User 
+     * @return Dota2Stats\Bundle\WebBundle\Entity\User
      */
     public function getUser()
     {
@@ -745,19 +771,20 @@ class MatchPlayer
     /**
      * Set steamUser
      *
-     * @param Dota2Stats\Bundle\WebBundle\Entity\SteamUser $steamUser
+     * @param  Dota2Stats\Bundle\WebBundle\Entity\SteamUser $steamUser
      * @return MatchPlayer
      */
     public function setSteamUser(\Dota2Stats\Bundle\WebBundle\Entity\SteamUser $steamUser = null)
     {
         $this->steamUser = $steamUser;
+
         return $this;
     }
 
     /**
      * Get steamUser
      *
-     * @return Dota2Stats\Bundle\WebBundle\Entity\SteamUser 
+     * @return Dota2Stats\Bundle\WebBundle\Entity\SteamUser
      */
     public function getSteamUser()
     {
