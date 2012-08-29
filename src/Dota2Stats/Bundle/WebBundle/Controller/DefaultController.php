@@ -36,14 +36,14 @@ class DefaultController extends Controller
          */
          
          /**
-         * TODO include steamlogin and move to service
+         * @TODO include steamlogin and move to service
          */
         $steam = new SteamSignIn();
 
         $address = $this->getRequest()->server->get('HTTP_HOST');
         //Imprescindible que la url comenci per http/https (aixo ho tenia ben fet pero es veu que es va perdre ><
         /**
-         * TODO : support https
+         * @TODO : support https
          */
         $url = $steam->genUrl('http://' . $address . '/loginCallback', false);
         $matches = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match_list.json'))->result->matches;
@@ -65,11 +65,11 @@ class DefaultController extends Controller
 
         $url = 'http://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?key=48F54125B3F7A12DE2F170FD65624598&account_id=' . $accountId;
 
-        $ch=curl_init();
+        $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-        $response = curl_exec ($ch);
-        curl_close ($ch);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        curl_close($ch);
 
         $data = json_decode($response)->result->matches;
         
@@ -77,7 +77,6 @@ class DefaultController extends Controller
     }
     
     /**
-     * TODO : set requirements (is this id numerical?)
      * @Route("/match/{matchId}/",name="match", requirements={"matchId" = "\d+"})
      * @Template()
      */
@@ -147,12 +146,12 @@ class DefaultController extends Controller
     public function loginAction()
     {
         /**
-         * TODO include steamlogin and move to service
+         * @TODO include steamlogin and move to service
          */
         //$steam = new SteamSignIn();
 
         /**
-         * TODO define in config file (parameters_local maybe?)
+         * @TODO define in config file (parameters_local maybe?)
          */
         /*$address = $this->getRequest()->server->get('HTTP_HOST');
 
@@ -160,7 +159,7 @@ class DefaultController extends Controller
         
         $data = array('url' => $url);*/
         /**
-         * TODO : validate steam signature, to prevent access to other people's accounts
+         * @TODO : validate steam signature, to prevent access to other people's accounts
          * Also, cookies are not safe if they're not passed encripted with https (as they would expose the user to a man in the middle attack)
          */
         $steamId = isset($_COOKIE['steamId']) ? $_COOKIE['steamId'] : '';

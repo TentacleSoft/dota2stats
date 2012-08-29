@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="User",
- *      uniqueConstraints={@ORM\UniqueConstraint(name="steamId_unique",columns={"steamId"}),@ORM\UniqueConstraint(name="userName_unique",columns={"userName"})})
+ *      uniqueConstraints={@ORM\UniqueConstraint(name="userName_unique",columns={"userName"})})
  */
 class User {
     /**
@@ -16,12 +16,13 @@ class User {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
+    
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToOne(targetEntity="SteamUser", inversedBy="user")
+     * @ORM\JoinColumn(name="id", referencedColumnName="userId")
      */
-    protected $steamId = -1;
-
+    protected $steamUser;
+    
     /**
      * @ORM\Column(type="string")
      */
@@ -31,11 +32,6 @@ class User {
      * @ORM\Column(type="string", length=100)
      */
     protected $userName = '';
-
-    /**
-     * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="user")
-     */
-    protected $matchPlayers = array();
 
     /**
      * Get id
@@ -112,6 +108,7 @@ class User {
     {
         return $this->userName;
     }
+
     public function __construct()
     {
         $this->matchPlayers = new \Doctrine\Common\Collections\ArrayCollection();
@@ -147,5 +144,27 @@ class User {
     public function getMatchPlayers()
     {
         return $this->matchPlayers;
+    }
+
+    /**
+     * Set steamUser
+     *
+     * @param Dota2Stats\Bundle\WebBundle\Entity\SteamUser $steamUser
+     * @return User
+     */
+    public function setSteamUser(\Dota2Stats\Bundle\WebBundle\Entity\SteamUser $steamUser = null)
+    {
+        $this->steamUser = $steamUser;
+        return $this;
+    }
+
+    /**
+     * Get steamUser
+     *
+     * @return Dota2Stats\Bundle\WebBundle\Entity\SteamUser 
+     */
+    public function getSteamUser()
+    {
+        return $this->steamUser;
     }
 }

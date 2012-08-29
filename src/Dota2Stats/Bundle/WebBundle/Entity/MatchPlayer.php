@@ -27,10 +27,10 @@ class MatchPlayer
      */
     protected $match;
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="matchPlayers")
-     * @ORM\JoinColumn(name="accountId", referencedColumnName="steamId")
+     * @ORM\ManyToOne(targetEntity="SteamUser", inversedBy="matchPlayers")
+     * @ORM\JoinColumn(name="accountId", referencedColumnName="accountId")
      */
-    protected $user;
+    protected $steamUser;
 
 
     /**
@@ -740,5 +740,27 @@ class MatchPlayer
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set steamUser
+     *
+     * @param Dota2Stats\Bundle\WebBundle\Entity\SteamUser $steamUser
+     * @return MatchPlayer
+     */
+    public function setSteamUser(\Dota2Stats\Bundle\WebBundle\Entity\SteamUser $steamUser = null)
+    {
+        $this->steamUser = $steamUser;
+        return $this;
+    }
+
+    /**
+     * Get steamUser
+     *
+     * @return Dota2Stats\Bundle\WebBundle\Entity\SteamUser 
+     */
+    public function getSteamUser()
+    {
+        return $this->steamUser;
     }
 }
