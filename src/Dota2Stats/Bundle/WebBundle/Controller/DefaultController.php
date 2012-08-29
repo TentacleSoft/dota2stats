@@ -48,7 +48,7 @@ class DefaultController extends Controller
         $url = $steam->genUrl('http://' . $address . '/loginCallback', false);
         $matches = json_decode(file_get_contents(__DIR__ . '/../Resources/data/match_list.json'))->result->matches;
 
-        $data = array('matches' => $matches, 'url' => $url);
+        $data = array('matches' => $matches, 'ajax' => $this->getRequest()->isXmlHttpRequest(), 'url' => $url);
 
         return $data;
     }
@@ -76,10 +76,10 @@ class DefaultController extends Controller
         return array('matches' => $data);
     }
 
-    /**
+    /*
      * @Route("/match/{matchId}/",name="match", requirements={"matchId" = "\d+"})
      * @Template()
-     */
+
     public function matchAction($matchId)
     {
          // $url = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?match_id=' . $matchId . '&key=48F54125B3F7A12DE2F170FD65624598&account_id=18027978';
@@ -105,10 +105,10 @@ class DefaultController extends Controller
         );
 
         return $data;
-    }
+    }*/
 
     /**
-     * @Route("/match/{matchId}/details/",name="matchDetails", requirements={"matchId" = "\d+"})
+     * @Route("/match/{matchId}/",name="matchDetails", requirements={"matchId" = "\d+"})
      * @Template()
      */
     public function matchDetailsAction($matchId)
@@ -123,6 +123,10 @@ class DefaultController extends Controller
 
         $match = json_decode($response)->result;*/
 
+        $steam = new SteamSignIn();
+        $address = $this->getRequest()->server->get('HTTP_HOST');
+        $url = $steam->genUrl('http://' . $address . '/loginCallback', false);
+
         $dataService = $this->get('dota2_stats.service.dota2_data');
         $matchService = $this->get('dota2_stats.service.match_data');
 
@@ -133,7 +137,9 @@ class DefaultController extends Controller
         $data = array(
             'match' => $match,
             'items' => $items,
-            'heroes' => $heroes
+            'heroes' => $heroes,
+            'ajax' => $this->getRequest()->isXmlHttpRequest(),
+            'url' => $url
         );
 
         return $data;

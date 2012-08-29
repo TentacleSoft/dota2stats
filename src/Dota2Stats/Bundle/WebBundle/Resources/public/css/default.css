@@ -179,3 +179,60 @@ div#background {
     opacity: 0;
     z-index: 1;
 }
+
+
+
+
+/* switchPage animation */
+.closePage {
+    animation:closePageAnimation 0.2s;
+    -moz-animation:closePageAnimation 0.2s; /* Firefox */
+    -webkit-animation:closePageAnimation 0.2s; /* Safari and Chrome */
+
+    transform: rotateY(90deg);
+    -moz-transform: rotateY(90deg);
+    -webkit-transform: rotateY(90deg);
+    -o-transform: rotateY(90deg);
+}
+
+@keyframes closePageAnimation
+{
+    from {transform: rotateY(0deg);}
+    to {transform: rotateY(90deg);}
+}
+
+@-moz-keyframes closePageAnimation /* Firefox */
+{
+    from {-moz-transform: rotateY(0deg);}
+    to {-moz-transform: rotateY(90deg);}
+}
+
+@-webkit-keyframes closePageAnimation /* Safari and Chrome */
+{
+    from {-webkit-transform: rotateY(0deg);}
+    to {-webkit-transform: rotateY(90deg);}
+}
+
+.openPage {
+    animation:openPageAnimation 0.2s;
+    -moz-animation:openPageAnimation 0.2s; /* Firefox */
+    -webkit-animation:openPageAnimation 0.2s; /* Safari and Chrome */
+}
+
+@keyframes openPageAnimation
+{
+    from {transform: rotateY(90deg);}
+    to {transform: rotateY(0deg);}
+}
+
+@-moz-keyframes openPageAnimation /* Firefox */
+{
+    from {-moz-transform: rotateY(90deg);}
+    to {-moz-transform: rotateY(0deg);}
+}
+
+@-webkit-keyframes openPageAnimation /* Safari and Chrome */
+{
+    from {-webkit-transform: rotateY(90deg);}
+    to {-webkit-transform: rotateY(0deg);}
+}

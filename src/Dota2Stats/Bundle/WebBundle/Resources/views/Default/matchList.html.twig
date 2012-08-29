@@ -1,11 +1,10 @@
-{% extends 'Dota2StatsWebBundle:Default:layout.html.twig' %}
+{% extends ajax ? 'Dota2StatsWebBundle:Default:simple.html.twig' : 'Dota2StatsWebBundle:Default:layout.html.twig' %}
 
 {% block body %}
 <div id="match_details">
     <div id="details">
 
     </div>
-    <button id="back">Back</button>
 </div>
 <div id="match_list">
     <table id="matches">

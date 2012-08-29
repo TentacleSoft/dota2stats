@@ -19,6 +19,21 @@ function restoreLogin(divWidth, divHeight) {
     });
 }
 
+function switchPage(url) {
+    $.get(url, function(data) {
+        $('#body').addClass('closePage');
+        _.delay(function() {
+            $('#body').html(data);
+            $('#body').toggleClass('closePage openPage');
+        }, 200);
+
+    })
+}
+
+function switchBackPage(data) {
+    $('#body').html(data);
+}
+
 $(function () {
     /* Login */
     var loginWidth = $('div.login-popup').width(),
@@ -58,26 +73,24 @@ $(function () {
     window.addEventListener("message", function(e) {
         console.log(e.data); //e.data is the string message that was sent.
     }, true);
+
+    window.addEventListener('popstate', function(event) {
+        console.log(event);
+        if (event.state) {
+            switchBackPage(event.state.data);
+        }
+    });
     
     /* Match List */
     var matchesStart = 0;
     
     $('#body').css('height', $('#match_list').css('height'));
     
-    $('.match').click(function() {
-        $('#details').html('Loading...');
-        window.history.pushState(null, '', '/match/'+$(this).attr('id'));
-        $('#details').load($(this).attr('id')+'/details');
-        $('#match_list').animate({'left': -1000}, 200, function() {
-            $('#match_details').show();
-        });
-    });
-    
-    $('button#back').click(function() {
-        window.history.pushState(null, '', '/');
-        $('#match_details').hide();
-        $('#match_list').show();
-        $('#match_list').animate({'left': 0}, 200);
+    $('.match').live('click', function() {
+        var url = '/match/' + $(this).attr('id') + '/',
+            data = {path: "prova"};
+        history.pushState(data, 'Match ' + $(this).attr('id'), url);
+        switchPage(url);
     });
     
     $('button#more').click(function() {

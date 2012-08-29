@@ -1,3 +1,6 @@
+{% extends ajax ? 'Dota2StatsWebBundle:Default:simple.html.twig' : 'Dota2StatsWebBundle:Default:layout.html.twig' %}
+
+{% block body %}
 <table class="match_summary">
     <th>
         Match ID
@@ -91,3 +94,4 @@
     </tr>
     {% endfor %}
 </table>
+{% endblock %}
