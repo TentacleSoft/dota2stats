@@ -9,9 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="SteamUser",
  *      uniqueConstraints={@ORM\UniqueConstraint(name="userId_unique",columns={"userId"})})
  */
-class SteamUser {
+class SteamUser
+{
     /**
-     * @TODO include user stats 
+     * @TODO include user stats
      */
 
     /**
@@ -19,17 +20,17 @@ class SteamUser {
      * @ORM\Column(type="integer")
      */
     protected $accountId;
-    
+
     /**
-     * @ORM\Column(type="integer") 
+     * @ORM\Column(type="integer")
      */
     protected $userId;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="steamUser")
      */
     protected $matchPlayers;
-    
+
     /**
      * @ORM\OneToOne(targetEntity="User", mappedBy="steamUser")
      */
@@ -38,23 +39,24 @@ class SteamUser {
     {
         $this->matchPlayers = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Set accountId
      *
-     * @param integer $accountId
+     * @param  integer   $accountId
      * @return SteamUser
      */
     public function setAccountId($accountId)
     {
         $this->accountId = $accountId;
+
         return $this;
     }
 
     /**
      * Get accountId
      *
-     * @return integer 
+     * @return integer
      */
     public function getAccountId()
     {
@@ -64,19 +66,20 @@ class SteamUser {
     /**
      * Set userId
      *
-     * @param integer $userId
+     * @param  integer   $userId
      * @return SteamUser
      */
     public function setUserId($userId)
     {
         $this->userId = $userId;
+
         return $this;
     }
 
     /**
      * Get userId
      *
-     * @return integer 
+     * @return integer
      */
     public function getUserId()
     {
@@ -86,12 +89,13 @@ class SteamUser {
     /**
      * Add matchPlayers
      *
-     * @param Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer $matchPlayers
+     * @param  Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer $matchPlayers
      * @return SteamUser
      */
     public function addMatchPlayer(\Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer $matchPlayers)
     {
         $this->matchPlayers[] = $matchPlayers;
+
         return $this;
     }
 
@@ -108,7 +112,7 @@ class SteamUser {
     /**
      * Get matchPlayers
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getMatchPlayers()
     {
@@ -118,19 +122,20 @@ class SteamUser {
     /**
      * Set user
      *
-     * @param Dota2Stats\Bundle\WebBundle\Entity\User $user
+     * @param  Dota2Stats\Bundle\WebBundle\Entity\User $user
      * @return SteamUser
      */
     public function setUser(\Dota2Stats\Bundle\WebBundle\Entity\User $user = null)
     {
         $this->user = $user;
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return Dota2Stats\Bundle\WebBundle\Entity\User 
+     * @return Dota2Stats\Bundle\WebBundle\Entity\User
      */
     public function getUser()
     {

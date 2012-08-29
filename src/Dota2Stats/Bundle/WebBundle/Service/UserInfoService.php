@@ -3,16 +3,16 @@
 namespace Dota2Stats\Bundle\WebBundle\Service;
 
 use Doctrine\ORM\EntityManager;
-use Dota2Stats\Bundle\WebBundle\Entity;
 
-class UserInfoService {
-    private $entityManager;    
-    
+class UserInfoService
+{
+    private $entityManager;
+
     public function setEntityManager(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
     }
-    
+
     public function getUserInfoBySteamId($steamId)
     {
         /**
@@ -20,7 +20,7 @@ class UserInfoService {
          */
         $users = $this->entityManager->getRepository('Dota2StatsWebBundle:User');
         $user = $users->findOneBySteamId($steamId);
-        
+
         return $user;
     }
 }
