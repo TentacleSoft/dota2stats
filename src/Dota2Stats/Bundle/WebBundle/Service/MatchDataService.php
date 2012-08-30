@@ -44,7 +44,7 @@ class MatchDataService
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $response = curl_exec ($ch);
         curl_close($ch);
-        if ($response === false) return $response;
+        if ($response === false) return false;
         return json_decode($response)->result->matches;
     }
 }

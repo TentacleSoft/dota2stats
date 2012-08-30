@@ -83,9 +83,8 @@ $(function () {
     $('#body').css('height', $('#match_list').css('height'));
     
     $('.match').live('click', function() {
-        var url = '/match/' + $(this).attr('id') + '/',
-            data = {path: "prova"};
-        history.pushState(data, 'Match ' + $(this).attr('id'), url);
+        var url = '/match/' + $(this).attr('id') + '/';
+        history.pushState('prova', 'Match ' + $(this).attr('id'), url);
         switchPage(url);
     });
     
