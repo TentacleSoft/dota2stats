@@ -69,14 +69,10 @@ $(function () {
         
         return false;
     });
-    
-    window.addEventListener("message", function(e) {
-        console.log(e.data); //e.data is the string message that was sent.
-    }, true);
 
-    window.addEventListener('popstate', function(event) {
+    $(window).bind('popstate', function(event) {
         console.log(event);
-        if (event.state) {
+        if (event.originalEvent.state) {
             switchBackPage(event.state.data);
         }
     });
