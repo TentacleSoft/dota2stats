@@ -41,36 +41,12 @@ class MatchPlayer
      * @ORM\Column(type="integer")
      */
     protected $heroId; // 39,
+   
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="array")
      */
-    protected $item0; // 24,
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $item1; // 168,
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $item2; // 180,
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $item3; // 102,
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $item4; // 22,
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $item5; // 41,
+    protected $items; // 24,
 
     /**
      * @ORM\Column(type="integer")
@@ -237,144 +213,6 @@ class MatchPlayer
     public function getHeroId()
     {
         return $this->heroId;
-    }
-
-    /**
-     * Set item0
-     *
-     * @param  integer     $item0
-     * @return MatchPlayer
-     */
-    public function setItem0($item0)
-    {
-        $this->item0 = $item0;
-
-        return $this;
-    }
-
-    /**
-     * Get item0
-     *
-     * @return integer
-     */
-    public function getItem0()
-    {
-        return $this->item0;
-    }
-
-    /**
-     * Set item1
-     *
-     * @param  integer     $item1
-     * @return MatchPlayer
-     */
-    public function setItem1($item1)
-    {
-        $this->item1 = $item1;
-
-        return $this;
-    }
-
-    /**
-     * Get item1
-     *
-     * @return integer
-     */
-    public function getItem1()
-    {
-        return $this->item1;
-    }
-
-    /**
-     * Set item2
-     *
-     * @param  integer     $item2
-     * @return MatchPlayer
-     */
-    public function setItem2($item2)
-    {
-        $this->item2 = $item2;
-
-        return $this;
-    }
-
-    /**
-     * Get item2
-     *
-     * @return integer
-     */
-    public function getItem2()
-    {
-        return $this->item2;
-    }
-
-    /**
-     * Set item3
-     *
-     * @param  integer     $item3
-     * @return MatchPlayer
-     */
-    public function setItem3($item3)
-    {
-        $this->item3 = $item3;
-
-        return $this;
-    }
-
-    /**
-     * Get item3
-     *
-     * @return integer
-     */
-    public function getItem3()
-    {
-        return $this->item3;
-    }
-
-    /**
-     * Set item4
-     *
-     * @param  integer     $item4
-     * @return MatchPlayer
-     */
-    public function setItem4($item4)
-    {
-        $this->item4 = $item4;
-
-        return $this;
-    }
-
-    /**
-     * Get item4
-     *
-     * @return integer
-     */
-    public function getItem4()
-    {
-        return $this->item4;
-    }
-
-    /**
-     * Set item5
-     *
-     * @param  integer     $item5
-     * @return MatchPlayer
-     */
-    public function setItem5($item5)
-    {
-        $this->item5 = $item5;
-
-        return $this;
-    }
-
-    /**
-     * Get item5
-     *
-     * @return integer
-     */
-    public function getItem5()
-    {
-        return $this->item5;
     }
 
     /**
@@ -789,5 +627,27 @@ class MatchPlayer
     public function getSteamUser()
     {
         return $this->steamUser;
+    }
+
+    /**
+     * Set items
+     *
+     * @param array $items
+     * @return MatchPlayer
+     */
+    public function setItems($items)
+    {
+        $this->items = $items;
+        return $this;
+    }
+
+    /**
+     * Get items
+     *
+     * @return array 
+     */
+    public function getItems()
+    {
+        return $this->items;
     }
 }

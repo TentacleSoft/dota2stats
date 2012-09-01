@@ -20,7 +20,7 @@ class RetrieveMatchesCommand extends ContainerAwareCommand {
     protected function configure()
     {
         $this
-            ->setName('dota2stats:retrieveMatches')
+            ->setName('dota2stats:update:matches')
             ->setDescription('Retrieves the matches from the dota2 web API and stores them in your local database')
             //->addArgument('name', InputArgument::OPTIONAL, 'Who do you want to greet?')
             //->addOption('yell', null, InputOption::VALUE_NONE, 'If set, the task will yell in uppercase letters')
