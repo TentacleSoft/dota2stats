@@ -26,6 +26,7 @@ class MatchPlayer
      * @ORM\JoinColumn(name="matchId", referencedColumnName="id")
      */
     protected $match;
+
     /**
      * @ORM\ManyToOne(targetEntity="SteamUser", inversedBy="matchPlayers")
      * @ORM\JoinColumn(name="accountId", referencedColumnName="accountId")

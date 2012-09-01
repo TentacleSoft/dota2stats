@@ -4,9 +4,12 @@ namespace Dota2Stats\Bundle\WebBundle\Service;
 
 use Dota2Stats\Bundle\WebBundle\Entity\DotaMatch;
 use Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer;
+use Doctrine\ORM\EntityManager;
 
 class MatchDataService
 {
+    protected $entityManager;
+
     /**
      * @param  int   $matchID
      * @return mixed
@@ -21,7 +24,7 @@ class MatchDataService
         return json_decode(file_get_contents(__DIR__ . '/../Resources/data/match.json'))->result;
     }
     
-    public function processMatches($numPetitions = 1)
+    public function processMatches()
     {
         $start = 0; //@TODO get from last match gotten from db
         $tstart = microtime(true);
@@ -32,13 +35,13 @@ class MatchDataService
         {
             $parsedMatches[] = $this->parseMatch($match);
         }
-        $this->persistMatches();
-        
+        $this->persistMatches($parsedMatches);
+        $text = count($parsedMatches) . ' matches, ';
         $tend = microtime(true);
         $elapsed = $tend - $tstart;
-        $text =  'time elapsed in the curl petition = ' . $elapsed . PHP_EOL;
+        $text .=  'time elapsed in the curl petition = ' . $elapsed . PHP_EOL;
         //parsegem la info i 
-        $text .= var_export($data, true);
+        //$text .= var_export($data, true);
         return $text;
     }
     
@@ -63,12 +66,14 @@ class MatchDataService
     
     protected function parseMatch($match)
     {
-        $parsedMatch = new DotaMatch;
+        $parsedMatch = new DotaMatch();
 
         $parsedMatch->setSeason($match->season);
         $parsedMatch->setRadiantWin($match->radiant_win);
         $parsedMatch->setDuration($match->duration);
-        $parsedMatch->setStartTime($match->starttime);
+        $time = new \DateTime();
+        $time->setTimestamp($match->starttime);
+        $parsedMatch->setStartTime($time);
         $parsedMatch->setId($match->match_id);
         
         $parsedMatch->setTowerStatusRadiant($match->tower_status_radiant);
@@ -80,13 +85,15 @@ class MatchDataService
         $parsedMatch->setReplaySalt($match->replay_salt);
         $parsedMatch->setLobbyType($match->lobby_type);
         $parsedMatch->setHumanPlayers($match->human_players);
-        $parsedMatch->setLeagueId($match->league_id);
+        $parsedMatch->setLeagueId($match->leagueid);
         
         //foreach
         foreach ($match->players as $player) {
-            $parsedPlayer = new MatchPlayer;
+            $parsedPlayer = new MatchPlayer();
             
-            $parsedPlayer->setAccountId($player->accountId);
+            $parsedPlayer->setMatch($parsedMatch);
+            $parsedPlayer->setAccountId($player->account_id);
+            //$parsedPlayer->setAccountId(27);
             $parsedPlayer->setPlayerSlot($player->player_slot);
             $parsedPlayer->setHeroId($player->hero_id);
             $items = array($player->item_0, $player->item_1, $player->item_2, $player->item_3, $player->item_4, $player->item_5);
@@ -109,11 +116,24 @@ class MatchDataService
             $parsedMatch->addMatchPlayer($parsedPlayer);
         }
         
-        return $matchPlayer;
+        return $parsedMatch;
     }
     
     protected function persistMatches($parsedMatches)
     {
-        
+        foreach ($parsedMatches as $match) {
+            $this->entityManager->persist($match);
+//            foreach ($match->getMatchPlayers() as $player) {
+//                $this->entityManager->persist($player);
+//            }
+//            //@TODO foreach for the matchplayers?
+            
+        }
+        $this->entityManager->flush();
+    }
+    
+    public function setEntityManager(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
     }
 }

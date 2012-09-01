@@ -16,7 +16,9 @@
 
         </service>
         <service id="dota2_stats.service.match_data" class="%dota2_stats.service.match_data.class%" >
-
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.entity_manager"></argument>
+            </call>
         </service>
         <service id="dota2_stats.service.user_info" class="%dota2_stats.service.user_info.class%">
             <call method="setEntityManager">

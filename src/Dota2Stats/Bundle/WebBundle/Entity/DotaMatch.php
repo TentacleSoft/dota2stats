@@ -16,7 +16,7 @@ class DotaMatch
     protected $id; // 27087736,
 
     /**
-     * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="match", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="match", fetch="EAGER", cascade={"persist"})
      *
      */
     protected $matchPlayers;
@@ -195,7 +195,7 @@ class DotaMatch
      * @param  datetime  $startTime
      * @return DotaMatch
      */
-    public function setStartTime($startTime)
+    public function setStartTime(\DateTime $startTime)
     {
         $this->startTime = $startTime;
 
