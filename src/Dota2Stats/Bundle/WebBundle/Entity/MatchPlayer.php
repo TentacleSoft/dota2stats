@@ -11,18 +11,13 @@ class MatchPlayer
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
      * @ORM\ManyToOne(targetEntity="DotaMatch", inversedBy="matchPlayers", cascade={"persist"})
      * @ORM\JoinColumn(name="matchId", referencedColumnName="id")
      */
     protected $match;
 
     /**
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="SteamUser", inversedBy="matchPlayers", cascade={"persist"})
      * @ORM\JoinColumn(name="accountId", referencedColumnName="accountId")
      */

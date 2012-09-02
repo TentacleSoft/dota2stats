@@ -65,6 +65,11 @@ class MatchDataService
         return $response;
     }
     
+    /**
+     * @TODO rename to something better, as this function persists users in the database too (or maybe that ought to be done somewhere else)
+     * @param \stdClass $match
+     * @return DotaMatch 
+     */
     protected function parseMatch($match)
     {
         $parsedMatch = new DotaMatch();
@@ -88,7 +93,6 @@ class MatchDataService
         $parsedMatch->setHumanPlayers($match->human_players);
         $parsedMatch->setLeagueId($match->leagueid);
         
-        $SteamUser = array();
         $steamUserRepo = $this->entityManager->getRepository('Dota2StatsWebBundle:SteamUser');
         
         //foreach
@@ -104,6 +108,7 @@ class MatchDataService
             if  ($steamUser === null) {
                 $steamUser = new SteamUser();
                 $steamUser->setAccountId($player->account_id);
+                $this->entityManager->persist($steamUser);
             }
             $parsedPlayer->setSteamUser($steamUser);
 
@@ -129,6 +134,8 @@ class MatchDataService
             
             $parsedMatch->addMatchPlayer($parsedPlayer);
         }
+        //saves the newly created steam players to the database (needed because their accountId attribute is a foreign key for MatchPlayer)
+        $this->entityManager->flush();
         
         return $parsedMatch;
     }
@@ -137,9 +144,10 @@ class MatchDataService
     {
         foreach ($parsedMatches as $match) {
             $this->entityManager->persist($match);
-//            foreach ($match->getMatchPlayers() as $player) {
-//                $this->entityManager->persist($player);
-//            }
+            foreach ($match->getMatchPlayers() as $player) {
+                $this->entityManager->persist($player);
+                $this->entityManager->persist($player->getSteamUser());
+            }
 //            //@TODO foreach for the matchplayers?
             
         }
