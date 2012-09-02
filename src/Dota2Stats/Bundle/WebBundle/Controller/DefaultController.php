@@ -209,4 +209,13 @@ class DefaultController extends Controller
 
         return $data;
     }
+    
+    /**
+     *@Route("/doctrineTest", name="doctrineTest") 
+     */
+    public function doctrineAction()
+    {
+        $a = $this->get('dota2stats.service.match_data')->processMatches();
+        return new Response($a);
+    }
 }

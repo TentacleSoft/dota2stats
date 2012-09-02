@@ -19,8 +19,7 @@ class User
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="SteamUser", inversedBy="user")
-     * @ORM\JoinColumn(name="id", referencedColumnName="userId")
+     * @ORM\OneToOne(targetEntity="SteamUser", mappedBy="user")
      */
     protected $steamUser;
 

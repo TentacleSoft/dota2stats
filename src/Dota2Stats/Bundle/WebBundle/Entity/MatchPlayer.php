@@ -12,23 +12,18 @@ class MatchPlayer
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $accountId; // 103771681,
+    protected $id;
 
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     */
-    protected $matchId;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="DotaMatch", inversedBy="matchPlayers")
+     * @ORM\ManyToOne(targetEntity="DotaMatch", inversedBy="matchPlayers", cascade={"persist"})
      * @ORM\JoinColumn(name="matchId", referencedColumnName="id")
      */
     protected $match;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SteamUser", inversedBy="matchPlayers")
+     * @ORM\ManyToOne(targetEntity="SteamUser", inversedBy="matchPlayers", cascade={"persist"})
      * @ORM\JoinColumn(name="accountId", referencedColumnName="accountId")
      */
     protected $steamUser;

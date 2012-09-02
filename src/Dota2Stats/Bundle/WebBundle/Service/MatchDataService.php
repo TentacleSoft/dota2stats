@@ -4,6 +4,7 @@ namespace Dota2Stats\Bundle\WebBundle\Service;
 
 use Dota2Stats\Bundle\WebBundle\Entity\DotaMatch;
 use Dota2Stats\Bundle\WebBundle\Entity\MatchPlayer;
+use Dota2Stats\Bundle\WebBundle\Entity\SteamUser;
 use Doctrine\ORM\EntityManager;
 
 class MatchDataService
@@ -87,13 +88,25 @@ class MatchDataService
         $parsedMatch->setHumanPlayers($match->human_players);
         $parsedMatch->setLeagueId($match->leagueid);
         
+        $SteamUser = array();
+        $steamUserRepo = $this->entityManager->getRepository('Dota2StatsWebBundle:SteamUser');
+        
         //foreach
         foreach ($match->players as $player) {
             $parsedPlayer = new MatchPlayer();
             
             $parsedPlayer->setMatch($parsedMatch);
-            $parsedPlayer->setAccountId($player->account_id);
-            //$parsedPlayer->setAccountId(27);
+            
+            //$parsedPlayer->setMatchId($parsedMatch->getId());
+            
+            //@TODO do petitions together outside the loop to save time
+            $steamUser = $steamUserRepo->findOneByAccountId($player->account_id);
+            if  ($steamUser === null) {
+                $steamUser = new SteamUser();
+                $steamUser->setAccountId($player->account_id);
+            }
+            $parsedPlayer->setSteamUser($steamUser);
+
             $parsedPlayer->setPlayerSlot($player->player_slot);
             $parsedPlayer->setHeroId($player->hero_id);
             $items = array($player->item_0, $player->item_1, $player->item_2, $player->item_3, $player->item_4, $player->item_5);
@@ -107,6 +120,7 @@ class MatchDataService
             $parsedPlayer->setDenies($player->denies);
             $parsedPlayer->setGoldPerMin($player->gold_per_min);
             $parsedPlayer->setXpPerMin($player->xp_per_min);
+            $parsedPlayer->setGoldSpent($player->gold_spent);
             $parsedPlayer->setHeroDamage($player->hero_damage);
             $parsedPlayer->setTowerDamage($player->tower_damage);
             $parsedPlayer->setHeroHealing($player->hero_healing);

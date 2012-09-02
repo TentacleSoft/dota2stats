@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="SteamUser",
- *      uniqueConstraints={@ORM\UniqueConstraint(name="userId_unique",columns={"userId"})})
+ * @ORM\Table(name="SteamUser")
  */
+// uniqueConstraints={@ORM\UniqueConstraint(name="userId_unique",columns={"userId"})}) -> és unique o null
 class SteamUser
 {
     /**
@@ -22,19 +22,16 @@ class SteamUser
     protected $accountId;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    protected $userId;
-
-    /**
      * @ORM\OneToMany(targetEntity="MatchPlayer", mappedBy="steamUser")
      */
     protected $matchPlayers;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", mappedBy="steamUser")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="steamUser")
+     * @ORM\JoinColumn(name="userId", referencedColumnName="id")
      */
     protected $user;
+
     public function __construct()
     {
         $this->matchPlayers = new \Doctrine\Common\Collections\ArrayCollection();
