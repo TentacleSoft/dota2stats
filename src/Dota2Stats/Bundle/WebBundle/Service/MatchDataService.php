@@ -59,10 +59,14 @@ class MatchDataService
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $response = curl_exec ($ch);
         curl_close($ch);
-        if ($response === false) return $response;
+        if ($response === false) {
+            return $response;
+        }
         $response = json_decode($response);
-        //->result->matches
-        return $response;
+        if (!property_exists($response, 'result')) {
+            return $response;
+        }
+        return $response->result->matches;
     }
     
     /**
