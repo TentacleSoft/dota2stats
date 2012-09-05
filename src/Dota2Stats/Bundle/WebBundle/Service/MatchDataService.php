@@ -25,12 +25,12 @@ class MatchDataService
         return json_decode(file_get_contents(__DIR__ . '/../Resources/data/match.json'))->result;
     }
     
-    public function processMatches()
+    public function updateDatabaseMatches()
     {
         $start = 0; //@TODO get from last match gotten from db
         $tstart = microtime(true);
-        //$data =$this->requestMatches();
-        $data = array($this->getMatch());
+        $data = $this->retrieveMatches();
+        //$data = array($this->getMatch());
         $parsedMatches = array();
         foreach ($data as $match)
         {
@@ -90,8 +90,8 @@ class MatchDataService
         $parsedMatch->setFirstBloodTime($match->first_blood_time);
         $parsedMatch->setReplaySalt($match->replay_salt);
         $parsedMatch->setLobbyType($match->lobby_type);
-        $parsedMatch->setHumanPlayers($match->human_players);
         $parsedMatch->setLeagueId($match->leagueid);
+        $parsedMatch->setHumanPlayers($match->human_players);
         
         $steamUserRepo = $this->entityManager->getRepository('Dota2StatsWebBundle:SteamUser');
         

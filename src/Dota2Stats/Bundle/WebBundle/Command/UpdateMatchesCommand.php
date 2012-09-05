@@ -32,7 +32,7 @@ class UpdateMatchesCommand extends ContainerAwareCommand {
         
         $matchDataService = $this->getContainer()->get('dota2_stats.service.match_data');
 
-        $text = $matchDataService->processMatches();
+        $text = $matchDataService->updateDatabaseMatches();
         
         $output->writeln($text);
     }
