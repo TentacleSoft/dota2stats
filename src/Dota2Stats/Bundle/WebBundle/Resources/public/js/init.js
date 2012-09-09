@@ -19,22 +19,44 @@ function restoreLogin(divWidth, divHeight) {
     });
 }
 
-function switchPage(url) {
+/**
+ * Loads the data for the new page and switches the page
+ * to it.
+ * @param {String} url
+ * @return {Object} data
+ */
+function pageData(url) {
     $.get(url, function(data) {
-        $('#body').addClass('closePage');
-        _.delay(function() {
-            $('#body').html(data);
-            $('#body').toggleClass('closePage openPage');
-        }, 200);
-
+        switchPage(data);
+        return data;
     })
 }
 
+/**
+ * Switches body page to the specified data.
+ * @param {Object} data
+ */
+function switchPage(data) {
+    $('#body').addClass('closePage');
+    _.delay(function() {
+        $('#body').html(data);
+        $('#body').toggleClass('closePage openPage');
+    }, 200);
+}
+
 function switchBackPage(data) {
-    $('#body').html(data);
+    $('#body').addClass('closePage');
+    _.delay(function() {
+        $('#body').html(data);
+        $('#body').toggleClass('closePage openPage');
+    }, 200);
 }
 
 $(function () {
+    var popped = ('state' in window.history), initialURL = location.href;
+
+    var initialData = $('#body').html();
+
     /* Login */
     var loginWidth = $('div.login-popup').width(),
         loginHeight = $('div.login-popup').height();
@@ -47,7 +69,7 @@ $(function () {
         $('div.login').removeClass('closed');
         $('span.login-text').hide();
         $('div.login').animate({width:loginWidth, height:loginHeight}, 'fast', function() {
-            $('div.login-popup').show();
+            $('div.login-popup').show();'prova'
             $('div#background').show(function() {
                 $('div#background').click({divWidth: loginDivWidth, divHeight: loginDivHeight}, function() {
                     restoreLogin(loginDivWidth, loginDivHeight);
@@ -60,7 +82,7 @@ $(function () {
         var newWindow = window.open($(this).attr('href'),'','height=600,width=1000');
         if (window.focus) newWindow.focus();
         
-        var timer = setInterval(function() {
+        var timer = setInterval(function(elrogerestonto) {
             if (newWindow.closed) {
                 clearInterval(timer);
                 $('.login-text').load('/login').show();
@@ -74,6 +96,8 @@ $(function () {
         console.log(event);
         if (event.originalEvent.state) {
             switchBackPage(event.state.data);
+        } else {
+            switchBackPage(initialData);
         }
     });
     
@@ -84,8 +108,11 @@ $(function () {
     
     $('.match').live('click', function() {
         var url = '/match/' + $(this).attr('id') + '/';
-        history.pushState('prova', 'Match ' + $(this).attr('id'), url);
-        switchPage(url);
+        history.pushState(
+            pageData(url),
+            'Match ' + $(this).attr('id'),
+            url
+        );
     });
     
     $('button#more').click(function() {
