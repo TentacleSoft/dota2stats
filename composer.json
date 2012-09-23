@@ -18,8 +18,7 @@
         "sensio/generator-bundle": "dev-master",
         "jms/security-extra-bundle": "1.1.*",
         "jms/di-extra-bundle": "1.0.*",
-        "koraktor/steam-condenser": "dev-master",
-        "phpunit/phpunit": "dev-master"
+        "koraktor/steam-condenser": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

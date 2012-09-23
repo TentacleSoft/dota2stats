@@ -12,7 +12,7 @@ namespace Dota2Stats\Bundle\WebBundle\Utilities;
 
 class SteamSignIn
 {
-    const STEAM_LOGIN = 'https://steamcommunity.com/openid/login';
+   const STEAM_LOGIN = 'https://steamcommunity.com/openid/login';
 
     /**
     * Get the URL to sign into steam
@@ -23,8 +23,13 @@ class SteamSignIn
     */
     public static function genUrl($returnTo = false, $useAmp = true)
     {
+        /**
+         *@todo redo this class as a trait so it can be inserted in the default controller? 
+         */
+        if (!isset($_SERVER['HTTP_HOST'])) {
+            return '';
+        }
         $returnTo = (!$returnTo) ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME'] : $returnTo;
-
         $params = array (
             'openid.ns'			=> 'http://specs.openid.net/auth/2.0',
             'openid.mode'		=> 'checkid_setup',
@@ -35,7 +40,6 @@ class SteamSignIn
         );
 
         $sep = ($useAmp) ? '&amp;' : '&';
-
         return self::STEAM_LOGIN . '?' . http_build_query($params, '', $sep);
     }
 

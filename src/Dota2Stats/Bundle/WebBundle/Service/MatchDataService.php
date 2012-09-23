@@ -9,19 +9,25 @@ use Doctrine\ORM\EntityManager;
 
 class MatchDataService
 {
+    /**
+     * @var EntityManager 
+     */
     protected $entityManager;
 
     /**
      * @param  int   $matchID
      * @return mixed
      */
-    public function getMatch($matchID = null)
+    public function getMatch($matchID)
     {
         /**
-         * @TODO : looks for match in db, if it's not there -> does a curl petition to steam server
-         * @TODO : define Entity for match
+         * @TODO : looks for match in db, if it's not there -> does a curl petition to steam server?
          */
 
+        $match = $this->entityManager->getRepository('Dota2StatsWebBundle:DotaMatch')->findOneById($matchId);
+        if ($match != null) {
+            return $match;
+        }
         return json_decode(file_get_contents(__DIR__ . '/../Resources/data/match.json'))->result;
     }
     
